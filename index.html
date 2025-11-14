@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vectflix – Watch Trailers</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        header {
+            background: #141414;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            color: #e50914;
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .category {
+            margin: 30px 20px;
+        }
+
+        .category h2 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            border-left: 4px solid #e50914;
+            padding-left: 10px;
+        }
+
+        .videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .video-title {
+            padding: 10px;
+            font-size: 15px;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Vectflix</h1>
+</header>
+
+<div id="content"></div>
+
+<script>
+    async function loadTrailers() {
+        try {
+            const response = await fetch("trailers.json");
+            const data = await response.json();
+
+            const content = document.getElementById("content");
+            content.innerHTML = "";
+
+            data.categories.forEach(category => {
+                const section = document.createElement("div");
+                section.className = "category";
+
+                section.innerHTML = `<h2>${category.name}</h2>`;
+
+                const grid = document.createElement("div");
+                grid.className = "videos";
+
+                category.trailers.forEach(trailer => {
+                    const card = document.createElement("div");
+                    card.className = "video-card";
+
+                    card.innerHTML = `
+                        <img src="${trailer.thumbnail}" alt="${trailer.title}">
+                        <div class="video-title">${trailer.title}</div>
+                    `;
+
+                    card.onclick = () => {
+                        window.location.href = trailer.url;
+                    };
+
+                    grid.appendChild(card);
+                });
+
+                section.appendChild(grid);
+                content.appendChild(section);
+            });
+
+        } catch (error) {
+            document.getElementById("content").innerHTML =
+                "<p style='color:red; text-align:center;'>Failed to load trailers.json</p>";
+        }
+    }
+
+    loadTrailers();
+</script>
+
+</body>
+</html>
