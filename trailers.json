@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "name": "Series Trailers",
+      "name": "Series",
       "trailers": [
         {
           "title": "Stranger Things 5 – First 5 Minutes",
@@ -12,85 +12,51 @@
           "title": "Stranger Things 4 Trailer",
           "url": "https://www.youtube.com/watch?v=yQEondeGvKo",
           "thumbnail": "https://img.youtube.com/vi/yQEondeGvKo/maxresdefault.jpg"
-        },
-        {
-          "title": KAOS Season 1",
-          "url": "https://ww1.goojara.to/eWkApj",
-          "thumbnail": "https://www.pinterest.com/pin/539376492889741355/maxresdefault.jpg"
         }
       ]
     },
-
+    {
+      "name": "Sci-Fi & Action",
+      "trailers": [
+        {
+          "title": "Dune: Part Two Trailer",
+          "url": "https://www.youtube.com/watch?v=Way9Dexny3w",
+          "thumbnail": "https://img.youtube.com/vi/Way9Dexny3w/maxresdefault.jpg"
+        },
+        {
+          "title": "Guardians of the Galaxy Vol.3 Trailer",
+          "url": "https://www.youtube.com/watch?v=u3V5KDHRQvk",
+          "thumbnail": "https://img.youtube.com/vi/u3V5KDHRQvk/maxresdefault.jpg"
+        }
+      ]
+    },
     {
       "name": "Family & Animation",
       "trailers": [
         {
-          "title": "Moana 2 – Official Trailer",
+          "title": "Moana 2 Official Trailer",
           "url": "https://www.youtube.com/watch?v=a2N1dHn3m-Q",
           "thumbnail": "https://img.youtube.com/vi/a2N1dHn3m-Q/maxresdefault.jpg"
         },
         {
-          "title": "Wicked – Official Trailer",
+          "title": "Wicked Official Trailer",
           "url": "https://www.youtube.com/watch?v=6COmYeLsz4c",
           "thumbnail": "https://img.youtube.com/vi/6COmYeLsz4c/maxresdefault.jpg"
         }
       ]
     },
-
-    {
-      "name": "Sci-Fi & Action",
-      "trailers": [
-        {
-          "title": "Dune: Part Two – Trailer",
-          "url": "https://www.youtube.com/watch?v=Way9Dexny3w",
-          "thumbnail": "https://img.youtube.com/vi/Way9Dexny3w/maxresdefault.jpg"
-        },
-        {
-          "title": "Guardians of the Galaxy Vol. 3 Trailer",
-          "url": "https://www.youtube.com/watch?v=u3V5KDHRQvk",
-          "thumbnail": "https://img.youtube.com/vi/u3V5KDHRQvk/maxresdefault.jpg"
-        },
-        {
-          "title": "Knock at the Cabin – Trailer",
-          "url": "https://www.youtube.com/watch?v=gv_QhoUy-xc",
-          "thumbnail": "https://img.youtube.com/vi/gv_QhoUy-xc/maxresdefault.jpg"
-        }
-      ]
-    },
-
     {
       "name": "Drama & Blockbusters",
       "trailers": [
         {
-          "title": "Oppenheimer – Official Trailer",
+          "title": "Oppenheimer Official Trailer",
           "url": "https://www.youtube.com/watch?v=bK6ldnjE3Y0",
           "thumbnail": "https://img.youtube.com/vi/bK6ldnjE3Y0/maxresdefault.jpg"
         },
         {
-          "title": "Barbie – Official Trailer",
+          "title": "Barbie Official Trailer",
           "url": "https://www.youtube.com/watch?v=pBk4NYhWNMM",
           "thumbnail": "https://img.youtube.com/vi/pBk4NYhWNMM/maxresdefault.jpg"
-        }
-      ]
-    },
-
-    {
-      "name": "Upcoming Movies",
-      "trailers": [
-        {
-          "title": "Venom: The Last Dance – Trailer",
-          "url": "https://www.youtube.com/watch?v=__2bjWbetsA",
-          "thumbnail": "https://img.youtube.com/vi/__2bjWbetsA/maxresdefault.jpg"
-        },
-        {
-          "title": "Mufasa: The Lion King – Trailer",
-          "url": "https://www.youtube.com/watch?v=j0I-l35M6gs",
-          "thumbnail": "https://img.youtube.com/vi/j0I-l35M6gs/maxresdefault.jpg"
-        },
-        {
-          "title": "Deadpool & Wolverine – Trailer",
-          "url": "https://www.youtube.com/watch?v=Idh8n5XuYIA",
-          "thumbnail": "https://img.youtube.com/vi/Idh8n5XuYIA/maxresdefault.jpg"
         }
       ]
     }
