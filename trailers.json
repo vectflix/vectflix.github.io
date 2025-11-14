@@ -9,11 +9,6 @@
           "thumbnail": "https://img.youtube.com/vi/vhFPHYgILN0/maxresdefault.jpg"
         },
         {
-          "title": "Stranger Things 4 Trailer",
-          "url": "https://www.youtube.com/watch?v=yQEondeGvKo",
-          "thumbnail": "https://img.youtube.com/vi/yQEondeGvKo/maxresdefault.jpg"
-        },
-        {
           "title": "KAOS S1 EP1",
           "url": "https://ww1.goojara.to/eWkApj",
           "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg"
@@ -51,7 +46,7 @@
         {
           "title": "KAOS S1 EP8",
           "url": "https://ww1.goojara.to/e6M8k6",
-          "tumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg"
+          "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg"
         }
       ]  
     },
@@ -74,9 +69,9 @@
       "name": "Family & Animation",
       "trailers": [
         {
-          "title": "Moana 2 Official Trailer",
-          "url": "https://www.youtube.com/watch?v=a2N1dHn3m-Q",
-          "thumbnail": "https://img.youtube.com/vi/a2N1dHn3m-Q/maxresdefault.jpg"
+          "title": "Bad Guys 2",
+          "url": "https://ww1.goojara.to/mZDwVe",
+          "thumbnail": "https://i.pinimg.com/736x/f4/3d/33/f43d33f2ab89e2fc0901230fdd319a9a.jpg"
         },
         {
           "title": "Wicked Official Trailer",
