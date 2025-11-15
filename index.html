@@ -3,214 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vectflix</title>
+<title>Trailer Hub</title>
 <style>
-  body {margin:0; font-family: Arial, sans-serif; background:#000; color:#fff;}
-  header {padding:1rem 4vw; background:#111;}
-  h1 {margin:0;}
-  input#searchBox {width:100%; padding:0.5rem; border-radius:0.5rem; border:1px solid #888; margin-bottom:1rem;}
-  section {margin:1rem 0;}
-  .row-title {font-size:1.5rem; margin:0 0 0.5rem 4vw;}
-  .row {display:flex; overflow-x:auto; padding-left:4vw;}
-  .card {min-width:200px; margin-right:1rem; background:#222; border-radius:8px; cursor:pointer;}
-  .card-img {height:120px; background-size:cover; background-position:center; border-top-left-radius:8px; border-top-right-radius:8px;}
-  .card-body {padding:0.5rem;}
-  .card-title {font-weight:bold; margin-bottom:0.3rem;}
-  .card-actions {display:flex; justify-content:space-between; margin-top:0.5rem;}
-  .card-btn {background:#333; color:#fff; border:none; padding:0.3rem 0.5rem; border-radius:4px; cursor:pointer;}
-  .card-btn:hover {background:#555;}
-  #hero {position:relative; width:100%; height:400px; background:#000; display:flex; align-items:flex-end; padding:2rem; background-size:cover; background-position:center;}
-  #hero h2 {margin:0; font-size:2rem; text-shadow:2px 2px 4px #000;}
-  #hero p {margin:0.5rem 0 0; text-shadow:1px 1px 3px #000;}
-  /* Modal styles */
-  #videoModal {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; z-index:1000;}
-  #videoModal iframe {width:80%; height:80%; border:none; border-radius:8px;}
-  #videoModal .closeBtn {position:absolute; top:1rem; right:2rem; font-size:2rem; cursor:pointer; color:#fff;}
+  body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a1a;
+  }
+  header h1 { margin: 0; }
+  header input {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+  }
+  #hero {
+    padding: 20px;
+    text-align: center;
+  }
+  #hero iframe {
+    width: 80%;
+    max-width: 900px;
+    height: 500px;
+    margin-top: 10px;
+    border: none;
+  }
+  .section {
+    padding: 20px;
+  }
+  .section h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .trailers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .trailer {
+    width: 180px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .trailer:hover {
+    transform: scale(1.05);
+  }
+  .trailer img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .trailer h3 {
+    font-size: 14px;
+    margin: 5px 0 0 0;
+  }
+  .trailer p {
+    font-size: 12px;
+    color: #ccc;
+    margin: 2px 0 0 0;
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Vectflix</h1>
-  <input type="text" id="searchBox" placeholder="Search trailers...">
+  <h1>Trailer Hub</h1>
+  <input type="text" id="search" placeholder="Search trailers...">
 </header>
 
 <div id="hero">
-  <div>
-    <h2 id="heroTitle">Welcome to Vectflix</h2>
-    <p id="heroDesc">Select a trailer to watch</p>
-  </div>
+  <h2>Loading...</h2>
 </div>
 
-<main id="rowsContainer"></main>
+<div class="section">
+  <h2>Series</h2>
+  <div id="series" class="trailers"></div>
+</div>
 
-<!-- Modal for video playback -->
-<div id="videoModal">
-  <span class="closeBtn">&times;</span>
-  <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+<div class="section">
+  <h2>Movies & Animations</h2>
+  <div id="movies" class="trailers"></div>
 </div>
 
 <script>
-let allTrailers = [];
-let savedList = JSON.parse(localStorage.getItem("savedTrailers") || "[]");
-const rowsContainer = document.getElementById("rowsContainer");
-const hero = document.getElementById("hero");
-const heroTitle = document.getElementById("heroTitle");
-const heroDesc = document.getElementById("heroDesc");
+let trailers = [];
+let heroDiv = document.getElementById('hero');
+let seriesDiv = document.getElementById('series');
+let moviesDiv = document.getElementById('movies');
+let searchInput = document.getElementById('search');
 
-const videoModal = document.getElementById("videoModal");
-const videoPlayer = document.getElementById("videoPlayer");
-const closeBtn = document.querySelector("#videoModal .closeBtn");
-
-function setHero(trailer) {
-  hero.style.backgroundImage = `url('${trailer.thumbnail}')`;
-  heroTitle.textContent = trailer.title;
-  heroDesc.textContent = trailer.description;
+// Convert JSON categories into two main categories
+function mapCategory(category) {
+  if(category.toLowerCase() === "series") return "series";
+  return "movies"; // everything else -> Movies & Animations
 }
-
-function toggleSave(title) {
-  const index = savedList.indexOf(title);
-  if(index > -1) savedList.splice(index,1);
-  else savedList.push(title);
-  localStorage.setItem("savedTrailers", JSON.stringify(savedList));
-  renderSavedRow();
-  renderRows();
-}
-
-function openVideoModal(trailer) {
-  let videoUrl = trailer.video;
-  if(videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be")) {
-    // Convert YouTube URL to embed format
-    const ytIdMatch = videoUrl.match(/(?:v=|\/)([a-zA-Z0-9_-]{11})/);
-    if(ytIdMatch) videoUrl = `https://www.youtube.com/embed/${ytIdMatch[1]}?autoplay=1`;
-  } else {
-    // For other video sources, embed directly (if allowed by iframe)
-    videoUrl += "?autoplay=1";
-  }
-  videoPlayer.src = videoUrl;
-  videoModal.style.display = "flex";
-}
-
-closeBtn.onclick = () => {
-  videoModal.style.display = "none";
-  videoPlayer.src = "";
-};
-
-window.onclick = e => {
-  if(e.target === videoModal) {
-    videoModal.style.display = "none";
-    videoPlayer.src = "";
-  }
-};
-
-function createCard(trailer) {
-  const card = document.createElement("div");
-  card.className = "card";
-
-  const img = document.createElement("div");
-  img.className = "card-img";
-  img.style.backgroundImage = `url('${trailer.thumbnail}')`;
-  card.appendChild(img);
-
-  const body = document.createElement("div");
-  body.className = "card-body";
-
-  const titleEl = document.createElement("div");
-  titleEl.className = "card-title";
-  titleEl.textContent = trailer.title;
-  body.appendChild(titleEl);
-
-  const actions = document.createElement("div");
-  actions.className = "card-actions";
-
-  const playBtn = document.createElement("button");
-  playBtn.className = "card-btn";
-  playBtn.textContent = "Play";
-  playBtn.onclick = e => { e.stopPropagation(); openVideoModal(trailer); };
-
-  const saveBtn = document.createElement("button");
-  saveBtn.className = "card-btn";
-  saveBtn.textContent = savedList.includes(trailer.title) ? "Saved" : "Save";
-  saveBtn.onclick = e => { e.stopPropagation(); toggleSave(trailer.title); };
-
-  actions.appendChild(playBtn);
-  actions.appendChild(saveBtn);
-  body.appendChild(actions);
-  card.appendChild(body);
-
-  card.onclick = () => setHero(trailer);
-
-  return card;
-}
-
-function renderSavedRow() {
-  const old = document.getElementById("savedRowSection");
-  if(old) old.remove();
-  if(savedList.length === 0) return;
-  const section = document.createElement("section");
-  section.id = "savedRowSection";
-  const h2 = document.createElement("h2");
-  h2.className = "row-title";
-  h2.textContent = "Saved Trailers";
-  const row = document.createElement("div");
-  row.className = "row";
-
-  allTrailers.forEach(trailer => {
-    if(!savedList.includes(trailer.title)) return;
-    const card = createCard(trailer);
-    row.appendChild(card);
-  });
-
-  section.appendChild(h2);
-  section.appendChild(row);
-  rowsContainer.prepend(section);
-}
-
-function renderRows() {
-  document.querySelectorAll("section:not(#savedRowSection)").forEach(s=>s.remove());
-  const grouped = {};
-  allTrailers.forEach(trailer=>{
-    if(!grouped[trailer.category]) grouped[trailer.category]=[];
-    grouped[trailer.category].push(trailer);
-  });
-
-  Object.keys(grouped).forEach(cat=>{
-    const section = document.createElement("section");
-    const h2 = document.createElement("h2");
-    h2.className="row-title";
-    h2.textContent = cat;
-    const row = document.createElement("div");
-    row.className="row";
-
-    grouped[cat].forEach(trailer=>{
-      row.appendChild(createCard(trailer));
-    });
-
-    section.appendChild(h2);
-    section.appendChild(row);
-    rowsContainer.appendChild(section);
-  });
-}
-
-document.getElementById("searchBox").addEventListener("input", e=>{
-  const term = e.target.value.toLowerCase();
-  document.querySelectorAll(".card").forEach(card=>{
-    const title = card.querySelector(".card-title").textContent.toLowerCase();
-    if(title.includes(term)) card.style.display="";
-    else card.style.display="none";
-  });
-});
 
 // Load JSON
-fetch("trailers.json")
-  .then(res=>res.json())
-  .then(data=>{
-    allTrailers = data;
-    renderSavedRow();
-    renderRows();
-    if(allTrailers.length) setHero(allTrailers[0]);
+fetch('trailers.json')
+  .then(res => res.json())
+  .then(data => {
+    trailers = data;
+    renderAll(trailers);
+    if(trailers.length > 0) showHero(trailers[0]);
   })
-  .catch(err=>console.error("Failed to load trailers.json", err));
+  .catch(err => {
+    console.error("Error loading trailers.json:", err);
+    heroDiv.innerHTML = "<p>Failed to load trailers.</p>";
+  });
+
+// Show hero video
+function showHero(trailer) {
+  // Convert YouTube links to embed format
+  let videoUrl = trailer.video;
+  if(videoUrl.includes("youtube.com/watch")) {
+    let videoId = videoUrl.split("v=")[1].split("&")[0];
+    videoUrl = `https://www.youtube.com/embed/${videoId}`;
+  }
+  heroDiv.innerHTML = `
+    <h2>${trailer.title}</h2>
+    <iframe src="${videoUrl}" allowfullscreen></iframe>
+    <p>${trailer.description}</p>
+  `;
+}
+
+// Render trailers
+function renderAll(list) {
+  seriesDiv.innerHTML = "";
+  moviesDiv.innerHTML = "";
+  list.forEach(trailer => {
+    let container = mapCategory(trailer.category) === "series" ? seriesDiv : moviesDiv;
+    let div = document.createElement('div');
+    div.className = 'trailer';
+    div.innerHTML = `
+      <img src="${trailer.thumbnail}" alt="${trailer.title}">
+      <h3>${trailer.title}</h3>
+      <p>${trailer.release_date}</p>
+    `;
+    div.addEventListener('click', () => showHero(trailer));
+    container.appendChild(div);
+  });
+}
+
+// Search functionality
+searchInput.addEventListener('input', () => {
+  let query = searchInput.value.toLowerCase();
+  let filtered = trailers.filter(t => 
+    t.title.toLowerCase().includes(query) || 
+    t.description.toLowerCase().includes(query) || 
+    t.series?.toLowerCase().includes(query)
+  );
+  renderAll(filtered);
+});
 </script>
+
 </body>
 </html>
