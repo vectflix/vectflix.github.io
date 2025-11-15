@@ -1,273 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Vectflix</title>
 <style>
-body, html {margin:0; padding:0; font-family:Arial,sans-serif; background:#000; color:#fff;}
+  :root {
+    --bg: #000;
+    --bg-soft: #141414;
+    --card: #181818;
+    --text: #ffffff;
+    --muted: #b3b3b3;
+    --accent: #e50914;
+  }
 
-/* Welcome Screen */
-#welcome {
-    position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:10;
-    background:#000;
-}
-#welcome iframe {
-    width:100%;
-    height:100%;
-    position:absolute;
-    top:0;left:0;
-    border:0;
-}
-#welcome h1 {
-    position:relative;
-    z-index:11;
-    font-size:48px;
-    color:#e50914;
-    text-align:center;
-    text-shadow:0 0 10px #000;
-}
+  body.light {
+    --bg: #f5f5f5;
+    --bg-soft: #ffffff;
+    --card: #ffffff;
+    --text: #111111;
+    --muted: #555555;
+    --accent: #e50914;
+  }
 
-/* Header */
-header {
-    position:sticky;
-    top:0;
-    background:#141414;
-    padding:15px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:5;
-}
-#logo {
-    color:#e50914;
-    margin:0;
-    font-size:26px;
-    cursor:pointer;
-    text-decoration:none;
-}
-#logo span {
-    text-decoration:none;
-}
-#search {
-    padding:6px 10px;
-    border-radius:4px;
-    border:none;
-    width:200px;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-/* Tabs */
-.tabs {
-    display:flex;
-    flex-wrap:wrap;
-    background:#111;
-    padding:10px 20px;
-}
-.tab {
-    margin-right:15px;
-    margin-bottom:8px;
-    padding:6px 12px;
-    cursor:pointer;
-    background:#222;
-    border-radius:4px;
-    font-size:14px;
-}
-.tab.active {background:#e50914;}
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
 
-/* Trailers grid */
-.trailers {
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
-    gap:15px;
-    padding:20px;
-}
-.card {
-    background:#111;
-    border-radius:6px;
-    cursor:pointer;
-    overflow:hidden;
-    text-align:center;
-    transition:transform .2s, box-shadow .2s;
-}
-.card:hover {
-    transform:scale(1.03);
-    box-shadow:0 0 15px rgba(0,0,0,0.7);
-}
-.card img {
-    width:100%;
-    height:260px;
-    object-fit:cover;
-}
-.card p {
-    padding:8px;
-    font-size:14px;
-}
+  /* Welcome / Hero section (like big Netflix banner) */
+  .hero {
+    position: relative;
+    height: 60vh;
+    min-height: 320px;
+    background: #000;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    color: #fff;
+    overflow: hidden;
+  }
 
-/* Footer */
-footer {
-    background:#141414;
-    padding:10px 20px;
-    text-align:center;
-    font-size:13px;
-    color:#aaa;
-}
-footer a {
-    color:#e50914;
-    text-decoration:none;
-}
-footer a:hover {
-    text-decoration:underline;
-}
+  .hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+  }
+
+  .hero-overlay {
+    position: relative;
+    max-width: 600px;
+    z-index: 2;
+  }
+
+  .hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .hero-buttons button {
+    margin-right: 10px;
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background: rgba(109, 109, 110, 0.7);
+    color: #fff;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent),
+      var(--bg-soft);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  .top-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #search {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    width: 170px;
+  }
+
+  .mode-toggle {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: #333;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    background: var(--bg-soft);
+    border-bottom: 1px solid #222;
+  }
+
+  .tab {
+    margin-right: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #222;
+    font-size: 13px;
+  }
+
+  .tab.active {
+    background: var(--accent);
+  }
+
+  main {
+    padding: 0 0 30px 0;
+  }
+
+  .row {
+    padding: 10px 20px 20px 20px;
+  }
+
+  .row-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .row-inner {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .card {
+    min-width: 160px;
+    max-width: 180px;
+    background: var(--card);
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-info {
+    padding: 6px 8px 8px 8px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-small {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-watch {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-save {
+    background: #333;
+    color: #fff;
+  }
+
+  .saved-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .section-title {
+    padding: 10px 20px 0 20px;
+    font-size: 18px;
+  }
+
+  /* Footer / IG link */
+  footer {
+    padding: 15px 20px;
+    background: #000;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid #222;
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Simple modal for "My List" (saved trailers) */
+  .mylist-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+  }
+  .mylist-content {
+    background: var(--bg-soft);
+    max-width: 600px;
+    width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 15px;
+  }
+  .mylist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .mylist-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .mylist-close {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+    .hero-title {
+      font-size: 26px;
+    }
+    .hero-sub {
+      font-size: 14px;
+    }
+    .logo {
+      font-size: 22px;
+    }
+    .card img {
+      height: 190px;
+    }
+  }
 </style>
 </head>
 <body>
+  <header>
+    <div class="logo">Vectflix</div>
+    <div class="top-controls">
+      <input id="search" type="text" placeholder="Search..." />
+      <button id="myListBtn" class="mode-toggle">My List</button>
+      <button id="modeToggle" class="mode-toggle">Light mode</button>
+    </div>
+  </header>
 
-<!-- Welcome Screen -->
-<div id="welcome">
-    <iframe
-        src="https://www.youtube.com/embed/vhFPHYgILN0?autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&loop=1&playlist=vhFPHYgILN0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
-    <h1>Welcome to Vectflix</h1>
-</div>
+  <!-- Hero / welcome like Netflix -->
+  <section class="hero">
+    <!-- YouTube videos can't autoplay as <video>, so just use the poster feel.
+         This is a fake background (you can swap the thumbnail) -->
+    <video autoplay muted loop playsinline>
+      <source src="" type="video/mp4" />
+    </video>
+    <div class="hero-overlay">
+      <div class="hero-title">Stranger Things 5</div>
+      <div class="hero-sub">First 5 minutes from Hawkins. Watch the opening scene now.</div>
+      <div class="hero-buttons">
+        <button class="btn-primary" id="heroWatch">Play</button>
+        <button class="btn-secondary" id="heroMore">More info</button>
+      </div>
+    </div>
+  </section>
 
-<header>
-    <!-- Clickable “logo” like Netflix -->
-    <a id="logo"><span>Vectflix</span></a>
-    <input type="text" id="search" placeholder="Search trailers...">
-</header>
+  <!-- Category tabs -->
+  <div class="tabs" id="tabs"></div>
 
-<div class="tabs" id="tabs"></div>
-<div id="trailers" class="trailers"></div>
+  <main id="content"></main>
 
-<footer>
+  <!-- My List modal -->
+  <div class="mylist-modal" id="myListModal">
+    <div class="mylist-content">
+      <div class="mylist-header">
+        <h3>My List</h3>
+        <span id="myListClose" class="mylist-close">X</span>
+      </div>
+      <div class="mylist-items" id="myListItems"></div>
+    </div>
+  </div>
+
+  <footer>
     Follow me on Instagram:
     <a href="https://www.instagram.com/vecteezy_1" target="_blank">@vecteezy_1</a>
-</footer>
+  </footer>
 
 <script>
-let trailersData = [];
-let categories = ["All"];
+  let allCategories = [];
+  let currentCategory = "All";
+  let savedTrailers = []; // from localStorage
 
-async function loadTrailers() {
+  // Load saved list from localStorage
+  function loadSaved() {
     try {
-        const response = await fetch("trailers.json");
-        const data = await response.json();
-        trailersData = data.categories || [];
-        trailersData.forEach(c => {
-            if (c && c.name && !categories.includes(c.name)) {
-                categories.push(c.name);
-            }
-        });
-        displayTabs();
-        displayTrailers("All");
-    } catch(e) {
-        console.error(e);
-        document.getElementById("trailers").innerHTML =
-          "<p style='color:red;text-align:center;'>Failed to load trailers.json</p>";
+      const data = localStorage.getItem("vectflix_mylist");
+      savedTrailers = data ? JSON.parse(data) : [];
+    } catch (e) {
+      savedTrailers = [];
     }
-}
+  }
 
-function displayTabs() {
-    const tabsContainer = document.getElementById("tabs");
-    tabsContainer.innerHTML = '';
-    categories.forEach((cat,i)=>{
-        const tab = document.createElement('div');
-        tab.className = 'tab' + (i===0 ? ' active' : '');
-        tab.innerText = cat;
-        tab.onclick = () => {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            displayTrailers(cat);
-        };
-        tabsContainer.appendChild(tab);
+  function saveMyList() {
+    localStorage.setItem("vectflix_mylist", JSON.stringify(savedTrailers));
+  }
+
+  function isSaved(trailer) {
+    return savedTrailers.some(t => t.url === trailer.url);
+  }
+
+  function toggleSave(trailer) {
+    if (isSaved(trailer)) {
+      savedTrailers = savedTrailers.filter(t => t.url !== trailer.url);
+    } else {
+      savedTrailers.push(trailer);
+    }
+    saveMyList();
+    renderContent(currentCategory);
+  }
+
+  async function loadTrailers() {
+    try {
+      const response = await fetch("trailers.json");
+      const data = await response.json();
+      allCategories = data.categories || [];
+      buildTabs();
+      renderContent("All");
+    } catch (e) {
+      document.getElementById("content").innerHTML =
+        "<p style='color:red;padding:20px;text-align:center;'>Failed to load trailers.json</p>";
+    }
+  }
+
+  function buildTabs() {
+    const tabsEl = document.getElementById("tabs");
+    tabsEl.innerHTML = "";
+
+    const allTab = document.createElement("div");
+    allTab.className = "tab active";
+    allTab.textContent = "All";
+    allTab.onclick = () => {
+      setActiveTab(allTab);
+      renderContent("All");
+    };
+    tabsEl.appendChild(allTab);
+
+    allCategories.forEach(cat => {
+      const tab = document.createElement("div");
+      tab.className = "tab";
+      tab.textContent = cat.name;
+      tab.onclick = () => {
+        setActiveTab(tab);
+        renderContent(cat.name);
+      };
+      tabsEl.appendChild(tab);
     });
-}
+  }
 
-function displayTrailers(categoryName) {
-    const container = document.getElementById("trailers");
-    container.innerHTML = '';
-    let list = [];
+  function setActiveTab(activeEl) {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    activeEl.classList.add("active");
+    currentCategory = activeEl.textContent;
+  }
+
+  // Group episodes with same "series name" (e.g. "KAOS S1 EP1", "KAOS S1 EP2"...)
+  function groupEpisodes(trailers) {
+    const groups = {};
+    trailers.forEach(t => {
+      // Series key = title without trailing "EPx" if present
+      // e.g. "KAOS S1 EP1" -> "KAOS S1"
+      const match = t.title.match(/(.+?)\s+EP\d+$/i);
+      const key = match ? match[1].trim() : t.title;
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(t);
+    });
+    return groups;
+  }
+
+  function renderContent(categoryName) {
+    const content = document.getElementById("content");
+    content.innerHTML = "";
+    let categoriesToRender = [];
 
     if (categoryName === "All") {
-        trailersData.forEach(c => {
-            if (c && Array.isArray(c.trailers)) list.push(...c.trailers);
-        });
+      categoriesToRender = allCategories;
     } else {
-        const cat = trailersData.find(c => c.name === categoryName);
-        if (cat && Array.isArray(cat.trailers)) list = cat.trailers;
+      const cat = allCategories.find(c => c.name === categoryName);
+      if (cat) categoriesToRender = [cat];
     }
 
-    list.forEach(trailer => {
-        if (!trailer || !trailer.thumbnail || !trailer.url) return;
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <img src="${trailer.thumbnail}" alt="${trailer.title || ''}">
-            <p>${trailer.title || ''}</p>
-        `;
-        card.onclick = () => window.open(trailer.url, "_blank");
-        container.appendChild(card);
+    const searchQuery = document.getElementById("search").value.toLowerCase().trim();
+
+    categoriesToRender.forEach(cat => {
+      let trailers = cat.trailers || [];
+
+      // Search filter
+      if (searchQuery) {
+        trailers = trailers.filter(t =>
+          t.title.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      if (trailers.length === 0) return;
+
+      // Group episodes
+      const grouped = groupEpisodes(trailers);
+      Object.keys(grouped).forEach(groupName => {
+        const row = document.createElement("section");
+        row.className = "row";
+
+        const rowTitle = document.createElement("div");
+        rowTitle.className = "row-title";
+        rowTitle.textContent = groupName;
+        row.appendChild(rowTitle);
+
+        const rowInner = document.createElement("div");
+        rowInner.className = "row-inner";
+
+        grouped[groupName].forEach(trailer => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const img = document.createElement("img");
+          img.src = trailer.thumbnail;
+          img.alt = trailer.title;
+
+          const info = document.createElement("div");
+          info.className = "card-info";
+
+          const title = document.createElement("div");
+          title.className = "card-title";
+          title.textContent = trailer.title;
+
+          const actions = document.createElement("div");
+          actions.className = "card-actions";
+
+          const watchBtn = document.createElement("button");
+          watchBtn.className = "btn-small btn-watch";
+          watchBtn.textContent = "Watch";
+          watchBtn.onclick = (e) => {
+            e.stopPropagation();
+            window.open(trailer.url, "_blank");
+          };
+
+          const saveBtn = document.createElement("button");
+          saveBtn.className = "btn-small btn-save";
+          saveBtn.textContent = isSaved(trailer) ? "Saved" : "Save";
+          saveBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleSave(trailer);
+          };
+
+          actions.appendChild(watchBtn);
+          actions.appendChild(saveBtn);
+          info.appendChild(title);
+          info.appendChild(actions);
+
+          card.appendChild(img);
+          card.appendChild(info);
+
+          if (isSaved(trailer)) {
+            const badge = document.createElement("div");
+            badge.className = "saved-badge";
+            badge.textContent = "Saved";
+            card.appendChild(badge);
+          }
+
+          card.onclick = () => window.open(trailer.url, "_blank");
+          rowInner.appendChild(card);
+        });
+
+        row.appendChild(rowInner);
+        content.appendChild(row);
+      });
     });
-}
+  }
 
-// Search
-document.getElementById('search').addEventListener('input', (e)=>{
-    const query = e.target.value.toLowerCase();
-    let filtered = [];
-    trailersData.forEach(cat => {
-        if (!cat || !Array.isArray(cat.trailers)) return;
-        filtered.push(...cat.trailers.filter(
-            t => t.title && t.title.toLowerCase().includes(query)
-        ));
+  // Search handler
+  document.getElementById("search").addEventListener("input", () => {
+    renderContent(currentCategory);
+  });
+
+  // Light / dark mode toggle
+  const modeBtn = document.getElementById("modeToggle");
+  function applyModeFromStorage() {
+    const mode = localStorage.getItem("vectflix_mode") || "dark";
+    if (mode === "light") {
+      document.body.classList.add("light");
+      modeBtn.textContent = "Dark mode";
+    } else {
+      document.body.classList.remove("light");
+      modeBtn.textContent = "Light mode";
+    }
+  }
+  modeBtn.addEventListener("click", () => {
+    const currentlyLight = document.body.classList.contains("light");
+    if (currentlyLight) {
+      document.body.classList.remove("light");
+      localStorage.setItem("vectflix_mode", "dark");
+      modeBtn.textContent = "Light mode";
+    } else {
+      document.body.classList.add("light");
+      localStorage.setItem("vectflix_mode", "light");
+      modeBtn.textContent = "Dark mode";
+    }
+  });
+
+  // My List modal
+  const myListBtn = document.getElementById("myListBtn");
+  const myListModal = document.getElementById("myListModal");
+  const myListClose = document.getElementById("myListClose");
+  const myListItems = document.getElementById("myListItems");
+
+  function renderMyList() {
+    myListItems.innerHTML = "";
+    if (savedTrailers.length === 0) {
+      myListItems.innerHTML = "<p>No saved trailers yet.</p>";
+      return;
+    }
+    savedTrailers.forEach(trailer => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.style.minWidth = "140px";
+
+      const img = document.createElement("img");
+      img.src = trailer.thumbnail;
+      img.alt = trailer.title;
+
+      const info = document.createElement("div");
+      info.className = "card-info";
+
+      const title = document.createElement("div");
+      title.className = "card-title";
+      title.textContent = trailer.title;
+
+      const actions = document.createElement("div");
+      actions.className = "card-actions";
+
+      const watchBtn = document.createElement("button");
+      watchBtn.className = "btn-small btn-watch";
+      watchBtn.textContent = "Watch";
+      watchBtn.onclick = (e) => {
+        e.stopPropagation();
+        window.open(trailer.url, "_blank");
+      };
+
+      const removeBtn = document.createElement("button");
+      removeBtn.className = "btn-small btn-save";
+      removeBtn.textContent = "Remove";
+      removeBtn.onclick = (e) => {
+        e.stopPropagation();
+        savedTrailers = savedTrailers.filter(t => t.url !== trailer.url);
+        saveMyList();
+        renderMyList();
+        renderContent(currentCategory);
+      };
+
+      actions.appendChild(watchBtn);
+      actions.appendChild(removeBtn);
+      info.appendChild(title);
+      info.appendChild(actions);
+
+      card.appendChild(img);
+      card.appendChild(info);
+      card.onclick = () => window.open(trailer.url, "_blank");
+
+      myListItems.appendChild(card);
     });
+  }
 
-    const container = document.getElementById("trailers");
-    container.innerHTML = '';
-    filtered.forEach(trailer => {
-        if (!trailer || !trailer.thumbnail || !trailer.url) return;
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <img src="${trailer.thumbnail}" alt="${trailer.title || ''}">
-            <p>${trailer.title || ''}</p>
-        `;
-        card.onclick = () => window.open(trailer.url, "_blank");
-        container.appendChild(card);
-    });
-});
+  myListBtn.addEventListener("click", () => {
+    renderMyList();
+    myListModal.style.display = "flex";
+  });
 
-// Hide welcome after 5 seconds
-setTimeout(()=>{
-    const w = document.getElementById("welcome");
-    if (w) w.style.display="none";
-},5000);
+  myListClose.addEventListener("click", () => {
+    myListModal.style.display = "none";
+  });
 
-// Make Vectflix logo act like Netflix home button
-document.getElementById('logo').addEventListener('click', () => {
-    // Clear search
-    const search = document.getElementById('search');
-    search.value = '';
+  myListModal.addEventListener("click", (e) => {
+    if (e.target === myListModal) {
+      myListModal.style.display = "none";
+    }
+  });
 
-    // Activate "All" tab
-    const tabs = document.querySelectorAll('.tab');
-    tabs.forEach(t => t.classList.remove('active'));
-    const allTab = Array.from(tabs).find(t => t.innerText === 'All');
-    if (allTab) allTab.classList.add('active');
+  // Hero buttons
+  document.getElementById("heroWatch").addEventListener("click", () => {
+    window.open("https://www.youtube.com/watch?v=vhFPHYgILN0", "_blank");
+  });
+  document.getElementById("heroMore").addEventListener("click", () => {
+    alert("Scroll down to see more Stranger Things episodes and other series.");
+  });
 
-    // Show all trailers again
-    displayTrailers("All");
-});
-
-loadTrailers();
+  // Init
+  loadSaved();
+  applyModeFromStorage();
+  loadTrailers();
 </script>
 </body>
 </html>
