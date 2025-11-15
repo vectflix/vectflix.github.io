@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VECTFLIX</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>🎬 VECTFLIX</h1>
-    <input type="text" id="searchBar" placeholder="Search titles...">
-    <div class="filters">
-      <button data-filter="all">All</button>
-      <button data-filter="series">Series</button>
-      <button data-filter="movies">Movies & Animation</button>
+  <header class="vf-header">
+    <div class="vf-logo">
+      <img src="vectflix-logo.svg" alt="VECTFLIX" />
     </div>
+    <nav class="vf-nav">
+      <input id="searchInput" type="search" placeholder="Search movies" />
+      <ul>
+        <li><button class="nav-btn" data-filter="all">Home</button></li>
+        <li><button class="nav-btn" data-filter="watchlist">My List</button></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Content Section -->
-  <section id="content" class="category">
-    <h2>Browse</h2>
-    <div id="grid" class="grid"></div>
-  </section>
+  <main id="app">
+    <section id="hero" class="vf-hero"></section>
+    <section class="vf-row">
+      <h2>All movies</h2>
+      <div id="row-all" class="vf-grid"></div>
+    </section>
+  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 VECTFLIX | 
-      <a href="https://instagram.com/vecteezy_1" target="_blank">Follow on Instagram</a>
+  <footer class="vf-footer">
+    <p>© <span id="year"></span> VECTFLIX • Follow on Instagram:
+      <a href="https://www.instagram.com/vecteezy_1" target="_blank">vecteezy_1</a>
     </p>
   </footer>
 
-  <script src="script.js"></script>
+  <div id="movieModal" class="vf-modal" hidden>
+    <div class="vf-modal-content">
+      <button id="modalClose" class="vf-close">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
