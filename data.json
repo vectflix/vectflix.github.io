@@ -6,7 +6,7 @@
     "thumbnail": "https://img.youtube.com/vi/vhFPHYgILN0/maxresdefault.jpg",
     "release_date": "2025",
     "tags": "sci-fi, horror, series, stranger things",
-    "category": "Series",
+    "category": "series",
     "series": "Stranger Things"
   },
   {
@@ -16,7 +16,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 1",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -26,7 +26,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 2",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -36,7 +36,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 3",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -46,7 +46,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 4",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -56,7 +56,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 5",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -66,7 +66,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 6",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -76,7 +76,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 7",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -86,7 +86,7 @@
     "thumbnail": "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg",
     "release_date": "2024",
     "tags": "series, kaos, episode 8",
-    "category": "Series",
+    "category": "series",
     "series": "KAOS"
   },
   {
@@ -96,7 +96,8 @@
     "thumbnail": "https://i.pinimg.com/1200x/76/3b/7d/763b7de1e68b213723bf35b30b3d54d6.jpg",
     "release_date": "2025",
     "tags": "horror, conjuring, movie",
-    "category": "Series"
+    "category": "movies",
+    "series": ""
   },
   {
     "title": "IT: Welcome to Derry S1 EP1",
@@ -105,7 +106,7 @@
     "thumbnail": "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg",
     "release_date": "2024",
     "tags": "horror, series, it, episode 1",
-    "category": "Series",
+    "category": "series",
     "series": "IT: Welcome to Derry"
   },
   {
@@ -115,7 +116,7 @@
     "thumbnail": "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg",
     "release_date": "2024",
     "tags": "horror, series, it, episode 2",
-    "category": "Series",
+    "category": "series",
     "series": "IT: Welcome to Derry"
   },
   {
@@ -125,8 +126,7 @@
     "thumbnail": "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg",
     "release_date": "2024",
     "tags": "horror, series, it, episode 3",
-    "category": "Series",
+    "category": "series",
     "series": "IT: Welcome to Derry"
   }
 ]
-
