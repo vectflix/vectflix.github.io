@@ -1,677 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vectflix</title>
-<style>
-  :root {
-    --bg: #000;
-    --bg-soft: #141414;
-    --card: #181818;
-    --text: #ffffff;
-    --muted: #b3b3b3;
-    --accent: #e50914;
-  }
-
-  body.light {
-    --bg: #f5f5f5;
-    --bg-soft: #ffffff;
-    --card: #ffffff;
-    --text: #111111;
-    --muted: #555555;
-    --accent: #e50914;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-  }
-
-  /* Welcome / Hero section (like big Netflix banner) */
-  .hero {
-    position: relative;
-    height: 60vh;
-    min-height: 320px;
-    background: #000;
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    color: #fff;
-    overflow: hidden;
-  }
-
-  .hero video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.35;
-  }
-
-  .hero-overlay {
-    position: relative;
-    max-width: 600px;
-    z-index: 2;
-  }
-
-  .hero-title {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .hero-sub {
-    font-size: 16px;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-
-  .hero-buttons button {
-    margin-right: 10px;
-    padding: 8px 18px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-  }
-
-  .btn-secondary {
-    background: rgba(109, 109, 110, 0.7);
-    color: #fff;
-  }
-
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent),
-      var(--bg-soft);
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .logo {
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: 1px;
-  }
-
-  .top-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  #search {
-    padding: 6px 10px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    width: 170px;
-  }
-
-  .mode-toggle {
-    padding: 6px 12px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    background: #333;
-    color: #fff;
-    font-size: 12px;
-  }
-
-  .tabs {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10px 20px;
-    background: var(--bg-soft);
-    border-bottom: 1px solid #222;
-  }
-
-  .tab {
-    margin-right: 12px;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    background: #222;
-    font-size: 13px;
-  }
-
-  .tab.active {
-    background: var(--accent);
-  }
-
-  main {
-    padding: 0 0 30px 0;
-  }
-
-  .row {
-    padding: 10px 20px 20px 20px;
-  }
-
-  .row-title {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .row-inner {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 6px;
-  }
-
-  .card {
-    min-width: 160px;
-    max-width: 180px;
-    background: var(--card);
-    border-radius: 6px;
-    overflow: hidden;
-    flex-shrink: 0;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .card-info {
-    padding: 6px 8px 8px 8px;
-  }
-
-  .card-title {
-    font-size: 13px;
-    margin-bottom: 4px;
-  }
-
-  .card-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .btn-small {
-    font-size: 11px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-watch {
-    background: var(--accent);
-    color: #fff;
-  }
-
-  .btn-save {
-    background: #333;
-    color: #fff;
-  }
-
-  .saved-badge {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background: var(--accent);
-    color: #fff;
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 4px;
-  }
-
-  .section-title {
-    padding: 10px 20px 0 20px;
-    font-size: 18px;
-  }
-
-  /* Footer / IG link */
-  footer {
-    padding: 15px 20px;
-    background: #000;
-    color: var(--muted);
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid #222;
-  }
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  /* Simple modal for "My List" (saved trailers) */
-  .mylist-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 30;
-  }
-  .mylist-content {
-    background: var(--bg-soft);
-    max-width: 600px;
-    width: 90%;
-    max-height: 70vh;
-    overflow-y: auto;
-    border-radius: 8px;
-    padding: 15px;
-  }
-  .mylist-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  .mylist-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .mylist-close {
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  @media (max-width: 600px) {
-    .hero-title {
-      font-size: 26px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vectflix</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --bg-alt: #111111;
+      --text: #ffffff;
+      --text-muted: #a3a3a3;
+      --accent: #e50914;
+      --card-bg: #181818;
+      --border: #2a2a2a;
     }
-    .hero-sub {
-      font-size: 14px;
+    :root[data-theme="light"] {
+      --bg: #f5f5f5;
+      --bg-alt: #ffffff;
+      --text: #111111;
+      --text-muted: #555555;
+      --accent: #e50914;
+      --card-bg: #ffffff;
+      --border: #e5e5e5;
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
     .logo {
-      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      font-size: 1.3rem;
+      color: var(--accent);
     }
-    .card img {
-      height: 190px;
+    .logo span {
+      color: var(--text);
+      font-weight: 600;
     }
-  }
-</style>
+
+    .top-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .search-input {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--text);
+      outline: none;
+      min-width: 160px;
+    }
+    :root[data-theme="light"] .search-input {
+      background: #ffffff;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .pill-btn {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pill-btn span.toggle-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    main {
+      padding: 0 10px 40px;
+    }
+
+    .hero {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      margin: 8px 0 16px;
+      background: radial-gradient(circle at top, #222, #000);
+      min-height: 150px;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+
+    .hero-info {
+      max-width: 80%;
+    }
+
+    .hero-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .hero-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-height: 3.3em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-radius: 999px;
+      border: none;
+      padding: 7px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-secondary {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rows-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .row {
+      margin-top: 4px;
+    }
+
+    .row-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 0 4px 6px;
+    }
+
+    .row-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .row-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .trailers-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .trailers-row::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .trailers-row::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 999px;
+    }
+
+    .card {
+      flex: 0 0 45%;
+      max-width: 45%;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-img-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 6px 7px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .card-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.15;
+      max-height: 2.3em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .tag-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      max-width: 60%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-actions {
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .card-actions button {
+      flex: 1;
+      border-radius: 999px;
+      padding: 4px 0;
+      border: none;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+
+    .btn-mini-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-mini-outline {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 640px) {
+      main {
+        padding: 0 26px 40px;
+      }
+      header {
+        padding: 14px 26px;
+      }
+      .hero {
+        min-height: 220px;
+        padding: 18px 18px 20px;
+      }
+      .hero-title {
+        font-size: 1.5rem;
+      }
+      .hero-desc {
+        font-size: 0.9rem;
+      }
+      .card {
+        flex-basis: 23%;
+        max-width: 23%;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .card {
+        flex-basis: 18%;
+        max-width: 18%;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="logo">Vectflix</div>
+    <div class="logo">Vect<span>flix</span></div>
     <div class="top-controls">
-      <input id="search" type="text" placeholder="Search..." />
-      <button id="myListBtn" class="mode-toggle">My List</button>
-      <button id="modeToggle" class="mode-toggle">Light mode</button>
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Search titles, tags, category..."
+      />
+      <button id="themeToggle" class="pill-btn" type="button">
+        <span class="toggle-dot"></span>
+        <span id="themeLabel">Dark</span>
+      </button>
     </div>
   </header>
 
-  <!-- Hero / welcome like Netflix -->
-  <section class="hero">
-    <!-- YouTube videos can't autoplay as <video>, so just use the poster feel.
-         This is a fake background (you can swap the thumbnail) -->
-    <video autoplay muted loop playsinline>
-      <source src="" type="video/mp4" />
-    </video>
-    <div class="hero-overlay">
-      <div class="hero-title">Stranger Things 5</div>
-      <div class="hero-sub">First 5 minutes from Hawkins. Watch the opening scene now.</div>
-      <div class="hero-buttons">
-        <button class="btn-primary" id="heroWatch">Play</button>
-        <button class="btn-secondary" id="heroMore">More info</button>
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-info">
+        <div class="chip" id="heroCategoryChip">Loading...</div>
+        <h1 class="hero-title" id="heroTitle">Loading trailer...</h1>
+        <p class="hero-desc" id="heroDesc">
+          Please wait while we fetch the latest trailers.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" id="heroWatchBtn" type="button">
+            ▶ Watch
+          </button>
+          <button class="btn-secondary" id="heroSaveBtn" type="button">
+            ＋ Save
+          </button>
+        </div>
       </div>
+    </section>
+
+    <section id="rows" class="rows-container">
+      <!-- Rows rendered here -->
+    </section>
+
+    <div id="emptyState" class="empty-state" style="display: none;">
+      No trailers match your search. Try a different title, tag, or category.
     </div>
-  </section>
+  </main>
 
-  <!-- Category tabs -->
-  <div class="tabs" id="tabs"></div>
+  <script>
+    const themeRoot = document.documentElement;
+    const themeToggleBtn = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+    const searchInput = document.getElementById("searchInput");
+    const rowsContainer = document.getElementById("rows");
+    const emptyState = document.getElementById("emptyState");
 
-  <main id="content"></main>
+    const heroTitleEl = document.getElementById("heroTitle");
+    const heroDescEl = document.getElementById("heroDesc");
+    const heroCategoryChip = document.getElementById("heroCategoryChip");
+    const heroWatchBtn = document.getElementById("heroWatchBtn");
+    const heroSaveBtn = document.getElementById("heroSaveBtn");
 
-  <!-- My List modal -->
-  <div class="mylist-modal" id="myListModal">
-    <div class="mylist-content">
-      <div class="mylist-header">
-        <h3>My List</h3>
-        <span id="myListClose" class="mylist-close">X</span>
-      </div>
-      <div class="mylist-items" id="myListItems"></div>
-    </div>
-  </div>
+    let allTrailers = [];
+    let filteredTrailers = [];
+    let grouped = {};
+    let savedIds = new Set();
+    let heroTrailer = null;
 
-  <footer>
-    Follow me on Instagram:
-    <a href="https://www.instagram.com/vecteezy_1" target="_blank">@vecteezy_1</a>
-  </footer>
-
-<script>
-  let allCategories = [];
-  let currentCategory = "All";
-  let savedTrailers = []; // from localStorage
-
-  // Load saved list from localStorage
-  function loadSaved() {
-    try {
-      const data = localStorage.getItem("vectflix_mylist");
-      savedTrailers = data ? JSON.parse(data) : [];
-    } catch (e) {
-      savedTrailers = [];
-    }
-  }
-
-  function saveMyList() {
-    localStorage.setItem("vectflix_mylist", JSON.stringify(savedTrailers));
-  }
-
-  function isSaved(trailer) {
-    return savedTrailers.some(t => t.url === trailer.url);
-  }
-
-  function toggleSave(trailer) {
-    if (isSaved(trailer)) {
-      savedTrailers = savedTrailers.filter(t => t.url !== trailer.url);
-    } else {
-      savedTrailers.push(trailer);
-    }
-    saveMyList();
-    renderContent(currentCategory);
-  }
-
-  async function loadTrailers() {
-    try {
-      const response = await fetch("trailers.json");
-      const data = await response.json();
-      allCategories = data.categories || [];
-      buildTabs();
-      renderContent("All");
-    } catch (e) {
-      document.getElementById("content").innerHTML =
-        "<p style='color:red;padding:20px;text-align:center;'>Failed to load trailers.json</p>";
-    }
-  }
-
-  function buildTabs() {
-    const tabsEl = document.getElementById("tabs");
-    tabsEl.innerHTML = "";
-
-    const allTab = document.createElement("div");
-    allTab.className = "tab active";
-    allTab.textContent = "All";
-    allTab.onclick = () => {
-      setActiveTab(allTab);
-      renderContent("All");
-    };
-    tabsEl.appendChild(allTab);
-
-    allCategories.forEach(cat => {
-      const tab = document.createElement("div");
-      tab.className = "tab";
-      tab.textContent = cat.name;
-      tab.onclick = () => {
-        setActiveTab(tab);
-        renderContent(cat.name);
-      };
-      tabsEl.appendChild(tab);
-    });
-  }
-
-  function setActiveTab(activeEl) {
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-    activeEl.classList.add("active");
-    currentCategory = activeEl.textContent;
-  }
-
-  // Group episodes with same "series name" (e.g. "KAOS S1 EP1", "KAOS S1 EP2"...)
-  function groupEpisodes(trailers) {
-    const groups = {};
-    trailers.forEach(t => {
-      // Series key = title without trailing "EPx" if present
-      // e.g. "KAOS S1 EP1" -> "KAOS S1"
-      const match = t.title.match(/(.+?)\s+EP\d+$/i);
-      const key = match ? match[1].trim() : t.title;
-      if (!groups[key]) groups[key] = [];
-      groups[key].push(t);
-    });
-    return groups;
-  }
-
-  function renderContent(categoryName) {
-    const content = document.getElementById("content");
-    content.innerHTML = "";
-    let categoriesToRender = [];
-
-    if (categoryName === "All") {
-      categoriesToRender = allCategories;
-    } else {
-      const cat = allCategories.find(c => c.name === categoryName);
-      if (cat) categoriesToRender = [cat];
+    // ---- THEME ----
+    function loadTheme() {
+      const stored = localStorage.getItem("vectflix-theme");
+      const theme = stored === "light" ? "light" : "dark";
+      themeRoot.setAttribute("data-theme", theme === "dark" ? "dark" : "light");
+      themeLabel.textContent = theme === "dark" ? "Dark" : "Light";
     }
 
-    const searchQuery = document.getElementById("search").value.toLowerCase().trim();
+    function toggleTheme() {
+      const current = themeRoot.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      themeRoot.setAttribute("data-theme", next);
+      localStorage.setItem("vectflix-theme", next);
+      themeLabel.textContent = next === "dark" ? "Dark" : "Light";
+    }
 
-    categoriesToRender.forEach(cat => {
-      let trailers = cat.trailers || [];
+    themeToggleBtn.addEventListener("click", toggleTheme);
+    loadTheme();
 
-      // Search filter
-      if (searchQuery) {
-        trailers = trailers.filter(t =>
-          t.title.toLowerCase().includes(searchQuery)
-        );
+    // ---- SAVED ----
+    function loadSaved() {
+      try {
+        const raw = localStorage.getItem("vectflix-saved");
+        if (!raw) return;
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr)) {
+          savedIds = new Set(arr);
+        }
+      } catch (e) {
+        console.warn("Could not parse saved trailers", e);
       }
+    }
 
-      if (trailers.length === 0) return;
+    function persistSaved() {
+      localStorage.setItem(
+        "vectflix-saved",
+        JSON.stringify(Array.from(savedIds))
+      );
+    }
 
-      // Group episodes
-      const grouped = groupEpisodes(trailers);
-      Object.keys(grouped).forEach(groupName => {
-        const row = document.createElement("section");
-        row.className = "row";
+    function trailerId(t) {
+      // a quick ID for local use
+      return t.title + "|" + (t.video || "");
+    }
 
-        const rowTitle = document.createElement("div");
-        rowTitle.className = "row-title";
-        rowTitle.textContent = groupName;
-        row.appendChild(rowTitle);
+    function isSaved(t) {
+      return savedIds.has(trailerId(t));
+    }
 
-        const rowInner = document.createElement("div");
-        rowInner.className = "row-inner";
+    function toggleSave(t) {
+      const id = trailerId(t);
+      if (savedIds.has(id)) {
+        savedIds.delete(id);
+      } else {
+        savedIds.add(id);
+      }
+      persistSaved();
+      renderRows(); // rerender to update buttons + Saved row
+      if (heroTrailer && trailerId(heroTrailer) === id) {
+        updateHero(heroTrailer);
+      }
+    }
 
-        grouped[groupName].forEach(trailer => {
-          const card = document.createElement("div");
-          card.className = "card";
+    // ---- FETCH DATA ----
+    async function loadTrailers() {
+      try {
+        const res = await fetch("trailers.json");
+        const data = await res.json();
+        if (!Array.isArray(data)) {
+          throw new Error("trailers.json must be a JSON array");
+        }
+        allTrailers = data;
+        filteredTrailers = allTrailers.slice();
+        heroTrailer = allTrailers[0] || null;
+        updateHero(heroTrailer);
+        renderRows();
+      } catch (e) {
+        console.error("Error loading trailers.json", e);
+        heroTitleEl.textContent = "Failed to load trailers";
+        heroDescEl.textContent = "Check that trailers.json is in the same folder as index.html.";
+        heroCategoryChip.textContent = "Error";
+      }
+    }
 
-          const img = document.createElement("img");
-          img.src = trailer.thumbnail;
-          img.alt = trailer.title;
+    // ---- HERO ----
+    function updateHero(trailer) {
+      if (!trailer) return;
+      heroTrailer = trailer;
+      heroTitleEl.textContent = trailer.title || "Untitled trailer";
+      heroDescEl.textContent =
+        trailer.description || "No description available.";
+      heroCategoryChip.textContent = trailer.category || "Uncategorized";
+      heroWatchBtn.onclick = () => {
+        if (trailer.video) {
+          window.open(trailer.video, "_blank");
+        }
+      };
+      heroSaveBtn.textContent = isSaved(trailer) ? "✓ Saved" : "＋ Save";
+      heroSaveBtn.onclick = () => toggleSave(trailer);
+    }
 
-          const info = document.createElement("div");
-          info.className = "card-info";
+    // ---- GROUPING ----
+    function groupByCategory(list) {
+      const map = {};
+      for (const t of list) {
+        const cat = t.category || "Other";
+        if (!map[cat]) map[cat] = [];
+        map[cat].push(t);
+      }
+      return map;
+    }
 
-          const title = document.createElement("div");
-          title.className = "card-title";
-          title.textContent = trailer.title;
-
-          const actions = document.createElement("div");
-          actions.className = "card-actions";
-
-          const watchBtn = document.createElement("button");
-          watchBtn.className = "btn-small btn-watch";
-          watchBtn.textContent = "Watch";
-          watchBtn.onclick = (e) => {
-            e.stopPropagation();
-            window.open(trailer.url, "_blank");
-          };
-
-          const saveBtn = document.createElement("button");
-          saveBtn.className = "btn-small btn-save";
-          saveBtn.textContent = isSaved(trailer) ? "Saved" : "Save";
-          saveBtn.onclick = (e) => {
-            e.stopPropagation();
-            toggleSave(trailer);
-          };
-
-          actions.appendChild(watchBtn);
-          actions.appendChild(saveBtn);
-          info.appendChild(title);
-          info.appendChild(actions);
-
-          card.appendChild(img);
-          card.appendChild(info);
-
-          if (isSaved(trailer)) {
-            const badge = document.createElement("div");
-            badge.className = "saved-badge";
-            badge.textContent = "Saved";
-            card.appendChild(badge);
-          }
-
-          card.onclick = () => window.open(trailer.url, "_blank");
-          rowInner.appendChild(card);
+    // ---- SEARCH ----
+    function applySearch() {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) {
+        filteredTrailers = allTrailers.slice();
+      } else {
+        filteredTrailers = allTrailers.filter((t) => {
+          const hay =
+            (t.title || "") +
+            " " +
+            (t.description || "") +
+            " " +
+            (t.tags || "") +
+            " " +
+            (t.category || "") +
+            " " +
+            (t.series || "");
+          return hay.toLowerCase().includes(q);
         });
+      }
+      renderRows();
+    }
 
-        row.appendChild(rowInner);
-        content.appendChild(row);
-      });
+    searchInput.addEventListener("input", () => {
+      applySearch();
     });
-  }
 
-  // Search handler
-  document.getElementById("search").addEventListener("input", () => {
-    renderContent(currentCategory);
-  });
-
-  // Light / dark mode toggle
-  const modeBtn = document.getElementById("modeToggle");
-  function applyModeFromStorage() {
-    const mode = localStorage.getItem("vectflix_mode") || "dark";
-    if (mode === "light") {
-      document.body.classList.add("light");
-      modeBtn.textContent = "Dark mode";
-    } else {
-      document.body.classList.remove("light");
-      modeBtn.textContent = "Light mode";
-    }
-  }
-  modeBtn.addEventListener("click", () => {
-    const currentlyLight = document.body.classList.contains("light");
-    if (currentlyLight) {
-      document.body.classList.remove("light");
-      localStorage.setItem("vectflix_mode", "dark");
-      modeBtn.textContent = "Light mode";
-    } else {
-      document.body.classList.add("light");
-      localStorage.setItem("vectflix_mode", "light");
-      modeBtn.textContent = "Dark mode";
-    }
-  });
-
-  // My List modal
-  const myListBtn = document.getElementById("myListBtn");
-  const myListModal = document.getElementById("myListModal");
-  const myListClose = document.getElementById("myListClose");
-  const myListItems = document.getElementById("myListItems");
-
-  function renderMyList() {
-    myListItems.innerHTML = "";
-    if (savedTrailers.length === 0) {
-      myListItems.innerHTML = "<p>No saved trailers yet.</p>";
-      return;
-    }
-    savedTrailers.forEach(trailer => {
-      const card = document.createElement("div");
+    // ---- RENDER ROWS ----
+    function createCard(trailer) {
+      const card = document.createElement("article");
       card.className = "card";
-      card.style.minWidth = "140px";
+
+      const imgWrap = document.createElement("div");
+      imgWrap.className = "card-img-wrapper";
 
       const img = document.createElement("img");
-      img.src = trailer.thumbnail;
-      img.alt = trailer.title;
+      img.src = trailer.thumbnail || "";
+      img.alt = trailer.title || "Thumbnail";
+      img.loading = "lazy";
 
-      const info = document.createElement("div");
-      info.className = "card-info";
+      imgWrap.appendChild(img);
+      card.appendChild(imgWrap);
+
+      const body = document.createElement("div");
+      body.className = "card-body";
 
       const title = document.createElement("div");
       title.className = "card-title";
-      title.textContent = trailer.title;
+      title.textContent = trailer.title || "Untitled";
+
+      const meta = document.createElement("div");
+      meta.className = "card-meta";
+
+      const tag = document.createElement("span");
+      tag.className = "tag-pill";
+      tag.textContent = (trailer.tags || "").split(",")[0] || "Trailer";
+
+      const year = document.createElement("span");
+      year.textContent = (trailer.release_date || "").slice(0, 4);
+
+      meta.appendChild(tag);
+      meta.appendChild(year);
 
       const actions = document.createElement("div");
       actions.className = "card-actions";
 
       const watchBtn = document.createElement("button");
-      watchBtn.className = "btn-small btn-watch";
-      watchBtn.textContent = "Watch";
-      watchBtn.onclick = (e) => {
+      watchBtn.className = "btn-mini-primary";
+      watchBtn.textContent = "▶ Watch";
+      watchBtn.type = "button";
+      watchBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        window.open(trailer.url, "_blank");
-      };
+        if (trailer.video) {
+          window.open(trailer.video, "_blank");
+        }
+      });
 
-      const removeBtn = document.createElement("button");
-      removeBtn.className = "btn-small btn-save";
-      removeBtn.textContent = "Remove";
-      removeBtn.onclick = (e) => {
+      const saveBtn = document.createElement("button");
+      saveBtn.className = "btn-mini-outline";
+      saveBtn.textContent = isSaved(trailer) ? "✓ Saved" : "＋ Save";
+      saveBtn.type = "button";
+      saveBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        savedTrailers = savedTrailers.filter(t => t.url !== trailer.url);
-        saveMyList();
-        renderMyList();
-        renderContent(currentCategory);
-      };
+        toggleSave(trailer);
+      });
 
       actions.appendChild(watchBtn);
-      actions.appendChild(removeBtn);
-      info.appendChild(title);
-      info.appendChild(actions);
+      actions.appendChild(saveBtn);
 
-      card.appendChild(img);
-      card.appendChild(info);
-      card.onclick = () => window.open(trailer.url, "_blank");
+      body.appendChild(title);
+      body.appendChild(meta);
+      body.appendChild(actions);
 
-      myListItems.appendChild(card);
-    });
-  }
+      card.appendChild(body);
 
-  myListBtn.addEventListener("click", () => {
-    renderMyList();
-    myListModal.style.display = "flex";
-  });
+      card.addEventListener("click", () => {
+        updateHero(trailer);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
 
-  myListClose.addEventListener("click", () => {
-    myListModal.style.display = "none";
-  });
-
-  myListModal.addEventListener("click", (e) => {
-    if (e.target === myListModal) {
-      myListModal.style.display = "none";
+      return card;
     }
-  });
 
-  // Hero buttons
-  document.getElementById("heroWatch").addEventListener("click", () => {
-    window.open("https://www.youtube.com/watch?v=vhFPHYgILN0", "_blank");
-  });
-  document.getElementById("heroMore").addEventListener("click", () => {
-    alert("Scroll down to see more Stranger Things episodes and other series.");
-  });
+    function renderRows() {
+      rowsContainer.innerHTML = "";
 
-  // Init
-  loadSaved();
-  applyModeFromStorage();
-  loadTrailers();
-</script>
+      if (!filteredTrailers.length) {
+        emptyState.style.display = "block";
+        return;
+      } else {
+        emptyState.style.display = "none";
+      }
+
+      // Group by category
+      grouped = groupByCategory(filteredTrailers);
+
+      // Saved row (from allTrailers + savedIds)
+      const savedList = allTrailers.filter((t) => isSaved(t));
+      if (savedList.length) {
+        const row = document.createElement("section");
+        row.className = "row";
+
+        const header = document.createElement("div");
+        header.className = "row-header";
+
+        const title = document.createElement("h2");
+        title.className = "row-title";
+        title.textContent = "Saved";
+
+        const count = document.createElement("span");
+        count.className = "row-count";
+        count.textContent = savedList.length + " items";
+
+        header.appendChild(title);
+        header.appendChild(count);
+
+        const scroller = document.createElement("div");
+        scroller.className = "trailers-row";
+
+        savedList.forEach((t) => {
+          scroller.appendChild(createCard(t));
+        });
+
+        row.appendChild(header);
+        row.appendChild(scroller);
+
+        rowsContainer.appendChild(row);
+      }
+
+      // Normal rows
+      Object.keys(grouped)
+        .sort()
+        .forEach((cat) => {
+          const items = grouped[cat];
+          if (!items || !items.length) return;
+
+          const row = document.createElement("section");
+          row.className = "row";
+
+          const header = document.createElement("div");
+          header.className = "row-header";
+
+          const title = document.createElement("h2");
+          title.className = "row-title";
+          title.textContent = cat;
+
+          const count = document.createElement("span");
+          count.className = "row-count";
+          count.textContent = items.length + " items";
+
+          header.appendChild(title);
+          header.appendChild(count);
+
+          const scroller = document.createElement("div");
+          scroller.className = "trailers-row";
+
+          items.forEach((t) => {
+            scroller.appendChild(createCard(t));
+          });
+
+          row.appendChild(header);
+          row.appendChild(scroller);
+
+          rowsContainer.appendChild(row);
+        });
+    }
+
+    // Init
+    loadSaved();
+    loadTrailers();
+  </script>
 </body>
 </html>
