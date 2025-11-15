@@ -1,0 +1,112 @@
+/* Dark Netflix-style theme */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #141414;
+  color: #fff;
+}
+
+header {
+  background-color: #000;
+  padding: 1em;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #e50914;
+}
+
+#searchBar {
+  margin-top: 10px;
+  padding: 8px;
+  width: 60%;
+  max-width: 400px;
+  border-radius: 4px;
+  border: none;
+}
+
+.filters {
+  margin-top: 10px;
+}
+
+.filters button {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #e50914;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background-color: #f40612;
+}
+
+.category {
+  padding: 2em;
+}
+
+.category h2 {
+  color: #e50914;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 200px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card a {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 12px;
+  background-color: #e50914;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.card a:hover {
+  background-color: #f40612;
+}
+
+footer {
+  background-color: #000;
+  text-align: center;
+  padding: 1em;
+  margin-top: 2em;
+}
+
+footer a {
+  color: #e50914;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

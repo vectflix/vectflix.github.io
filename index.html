@@ -1,168 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vectflix</title>
-<style>
-  body {
-    background-color: #111;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1a1a1a;
-  }
-  header h1 { margin: 0; }
-  header input {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    width: 200px;
-  }
-  #hero {
-    padding: 20px;
-    text-align: center;
-  }
-  #hero iframe {
-    width: 80%;
-    max-width: 900px;
-    height: 500px;
-    margin-top: 10px;
-    border: none;
-  }
-  .section {
-    padding: 20px;
-  }
-  .section h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .trailers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .trailer {
-    width: 180px;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .trailer:hover {
-    transform: scale(1.05);
-  }
-  .trailer img {
-    width: 100%;
-    border-radius: 5px;
-  }
-  .trailer h3 {
-    font-size: 14px;
-    margin: 5px 0 0 0;
-  }
-  .trailer p {
-    font-size: 12px;
-    color: #ccc;
-    margin: 2px 0 0 0;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VECTFLIX</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
+  <header>
+    <h1>🎬 VECTFLIX</h1>
+    <input type="text" id="searchBar" placeholder="Search titles...">
+    <div class="filters">
+      <button data-filter="all">All</button>
+      <button data-filter="series">Series</button>
+      <button data-filter="movies">Movies & Animation</button>
+    </div>
+  </header>
 
-<header>
-  <h1>Trailer Hub</h1>
-  <input type="text" id="search" placeholder="Search trailers...">
-</header>
+  <!-- Content Section -->
+  <section id="content" class="category">
+    <h2>Browse</h2>
+    <div id="grid" class="grid"></div>
+  </section>
 
-<div id="hero">
-  <h2>Loading...</h2>
-</div>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 VECTFLIX | 
+      <a href="https://instagram.com/vecteezy_1" target="_blank">Follow on Instagram</a>
+    </p>
+  </footer>
 
-<div class="section">
-  <h2>Series</h2>
-  <div id="series" class="trailers"></div>
-</div>
-
-<div class="section">
-  <h2>Movies & Animations</h2>
-  <div id="movies" class="trailers"></div>
-</div>
-
-<script>
-let trailers = [];
-let heroDiv = document.getElementById('hero');
-let seriesDiv = document.getElementById('series');
-let moviesDiv = document.getElementById('movies');
-let searchInput = document.getElementById('search');
-
-// Convert JSON categories into two main categories
-function mapCategory(category) {
-  if(category.toLowerCase() === "series") return "series";
-  return "movies"; // everything else -> Movies & Animations
-}
-
-// Load JSON
-fetch('trailers.json')
-  .then(res => res.json())
-  .then(data => {
-    trailers = data;
-    renderAll(trailers);
-    if(trailers.length > 0) showHero(trailers[0]);
-  })
-  .catch(err => {
-    console.error("Error loading trailers.json:", err);
-    heroDiv.innerHTML = "<p>Failed to load trailers.</p>";
-  });
-
-// Show hero video
-function showHero(trailer) {
-  // Convert YouTube links to embed format
-  let videoUrl = trailer.video;
-  if(videoUrl.includes("youtube.com/watch")) {
-    let videoId = videoUrl.split("v=")[1].split("&")[0];
-    videoUrl = `https://www.youtube.com/embed/${videoId}`;
-  }
-  heroDiv.innerHTML = `
-    <h2>${trailer.title}</h2>
-    <iframe src="${videoUrl}" allowfullscreen></iframe>
-    <p>${trailer.description}</p>
-  `;
-}
-
-// Render trailers
-function renderAll(list) {
-  seriesDiv.innerHTML = "";
-  moviesDiv.innerHTML = "";
-  list.forEach(trailer => {
-    let container = mapCategory(trailer.category) === "series" ? seriesDiv : moviesDiv;
-    let div = document.createElement('div');
-    div.className = 'trailer';
-    div.innerHTML = `
-      <img src="${trailer.thumbnail}" alt="${trailer.title}">
-      <h3>${trailer.title}</h3>
-      <p>${trailer.release_date}</p>
-    `;
-    div.addEventListener('click', () => showHero(trailer));
-    container.appendChild(div);
-  });
-}
-
-// Search functionality
-searchInput.addEventListener('input', () => {
-  let query = searchInput.value.toLowerCase();
-  let filtered = trailers.filter(t => 
-    t.title.toLowerCase().includes(query) || 
-    t.description.toLowerCase().includes(query) || 
-    t.series?.toLowerCase().includes(query)
-  );
-  renderAll(filtered);
-});
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
