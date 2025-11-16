@@ -15,7 +15,7 @@ body {
 .hero {
   position: relative;
   height: 70vh;
-  background-image: url("https://i.pinimg.com/1200x/95/05/8c/95058c2634ee3f29c899d396d36c703c.jpg");
+  background-image: url("https://i.pinimg.com/736x/f7/85/21/f785214cdd309223719e22fca96c2e9b.jpg");
   background-size: cover;
   background-position: center;
   border-bottom: 8px solid #222;
@@ -259,3 +259,4 @@ main {
     font-size: 1.2rem;
   }
 }
+
