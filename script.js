@@ -14,7 +14,23 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "The Conjuring: Last Rites (2025)", link: "https://ww1.goojara.to/m1eZL5", thumbnail: "https://i.pinimg.com/1200x/76/3b/7d/763b7de1e68b213723bf35b30b3d54d6.jpg" },
       { title: "IT: Welcome to Derry S1 EP1", link: "https://ww1.goojara.to/evpq4L", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
       { title: "IT: Welcome to Derry S1 EP2", link: "https://ww1.goojara.to/e4W0BM", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
-      { title: "IT: Welcome to Derry S1 EP3", link: "https://ww1.goojara.to/e4W0BM", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" }
+      { title: "IT: Welcome to Derry S1 EP3", link: "https://ww1.goojara.to/e4W0BM", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
+      { title: "Wednesday S1 EP1", link: "https://ww1.goojara.to/eZD6ve", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP2", link: "https://ww1.goojara.to/e06bzr", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP3", link: "https://ww1.goojara.to/e764eL", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP4", link: "https://ww1.goojara.to/ejPO1w", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP5", link: "https://ww1.goojara.to/evpkvA", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP6", link: "https://ww1.goojara.to/eyPz2w", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP7", link: "https://ww1.goojara.to/erAPZA", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S1 EP8", link: "https://ww1.goojara.to/e2ab1x", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP1", link: "https://ww1.goojara.to/eyPAMO", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP2", link: "https://ww1.goojara.to/erAp5j", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP3", link: "https://ww1.goojara.to/e2aeN5", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP4", link: "https://ww1.goojara.to/eJRpjp", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP5", link: "https://ww1.goojara.to/eN9zGr", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP6", link: "https://ww1.goojara.to/exGBO5", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP7", link: "https://ww1.goojara.to/eqGVy8", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+      { title: "Wednesday S2 EP8", link: "https://ww1.goojara.to/e6Mjrj", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" }
     ],
     sciFiAction: [
       { title: "Madame Web", link: "https://ww1.goojara.to/mLRzxj", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
@@ -26,7 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     dramaBlockbusters: [
       { title: "The Furioza", link: "https://ww1.goojara.to/mZDbbr", thumbnail: "https://i.pinimg.com/1200x/b1/5b/a4/b15ba4514a2058c48bbd8eec6060d666.jpg" },
-      { title: "Roofman 2025", link: "https://ww1.goojara.to/mrARxA", thumbnail: "https://i.pinimg.com/736x/03/80/b2/0380b2319ded86900ce14fd5c3e81364.jpg" }
+      { title: "Roofman 2025", link: "https://ww1.goojara.to/mrARxA", thumbnail: "https://i.pinimg.com/736x/03/80/b2/0380b2319ded86900ce14fd5c3e81364.jpg" },
+      { title: "Black phone", link: "https://ww1.goojara.to/mjP4Jx", thumbnail: "https://i.pinimg.com/1200x/d4/38/c0/d438c0273786d7f3463fd021be98add4.jpg" },
+      { title: "Black phone 2", link: "https://ww1.goojara.to/mvpeQA", thumbnail: "https://i.pinimg.com/1200x/56/3d/4c/563d4c11593a3e371bec51daeb148657.jpg" }
     ]
   };
 
@@ -96,4 +114,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
