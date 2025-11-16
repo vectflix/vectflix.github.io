@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,65 +25,78 @@
       </p>
 
       <form class="email-form">
-        <input type="email" placeholder="Email address" required />
-        <button type="submit">Get Started &gt;</button>
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit">Get Started</button>
       </form>
     </div>
   </header>
 
-  <!-- Main content -->
-  <main>
-    <!-- Optional featured trailer -->
-    <section class="row">
-      <h3>Featured Trailer</h3>
-      <div class="video-wrapper">
-        <iframe 
-          src="https://www.youtube.com/embed/vhFPHYgILN0" 
-          title="Stranger Things 5 – First 5 Minutes"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </section>
+  <div class="search-container">
+    <input type="text" id="movie-search" placeholder="Search movies...">
+  </div>
 
-    <!-- Series row (your big list of shows) -->
+  <main>
+    <!-- Series row -->
     <section class="row">
       <h3>Series</h3>
-      <div class="row-posters" id="series-row">
-        <!-- Filled automatically by script.js -->
+      <div class="scroll-container">
+        <button class="scroll-btn left">&lt;</button>
+        <div class="row-posters" id="series-row"></div>
+        <button class="scroll-btn right">&gt;</button>
       </div>
     </section>
 
     <!-- Sci-Fi & Action row -->
     <section class="row">
       <h3>Sci-Fi &amp; Action</h3>
-      <div class="row-posters" id="scifi-row">
-        <!-- Filled automatically by script.js -->
+      <div class="scroll-container">
+        <button class="scroll-btn left">&lt;</button>
+        <div class="row-posters" id="scifi-row"></div>
+        <button class="scroll-btn right">&gt;</button>
       </div>
     </section>
 
     <!-- Family & Animation row -->
     <section class="row">
       <h3>Family &amp; Animation</h3>
-      <div class="row-posters" id="family-row">
-        <!-- Filled automatically by script.js -->
+      <div class="scroll-container">
+        <button class="scroll-btn left">&lt;</button>
+        <div class="row-posters" id="family-row"></div>
+        <button class="scroll-btn right">&gt;</button>
       </div>
     </section>
 
     <!-- Drama & Blockbusters row -->
     <section class="row">
       <h3>Drama &amp; Blockbusters</h3>
-      <div class="row-posters" id="drama-row">
-        <!-- Filled automatically by script.js -->
+      <div class="scroll-container">
+        <button class="scroll-btn left">&lt;</button>
+        <div class="row-posters" id="drama-row"></div>
+        <button class="scroll-btn right">&gt;</button>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Vectflix &copy; 2025. Made by Cleophas.</p>
+    <p>Vectflix | <a href="https://Instagram.com/vecteezy_1" target="_blank">Instagram</a></p>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Scroll buttons functionality
+    const scrollContainers = document.querySelectorAll(".scroll-container");
+    scrollContainers.forEach(container => {
+      const row = container.querySelector(".row-posters");
+      const leftBtn = container.querySelector(".scroll-btn.left");
+      const rightBtn = container.querySelector(".scroll-btn.right");
+
+      leftBtn.addEventListener("click", () => {
+        row.scrollBy({ left: -300, behavior: "smooth" });
+      });
+      rightBtn.addEventListener("click", () => {
+        row.scrollBy({ left: 300, behavior: "smooth" });
+      });
+    });
+  </script>
 </body>
 </html>

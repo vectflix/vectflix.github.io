@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,7 +15,7 @@ body {
 .hero {
   position: relative;
   height: 70vh;
-  background-image: url("https://images.pexels.com/photos/7991377/pexels-photo-7991377.jpeg");
+  background-image: url("https://i.pinimg.com/1200x/95/05/8c/95058c2634ee3f29c899d396d36c703c.jpg");
   background-size: cover;
   background-position: center;
   border-bottom: 8px solid #222;
@@ -77,8 +78,10 @@ body {
 .hero-text {
   margin-top: 15px;
   font-size: 1rem;
+  max-width: 500px;
 }
 
+/* Email form */
 .email-form {
   margin-top: 20px;
   display: flex;
@@ -106,6 +109,23 @@ body {
   font-size: 1rem;
 }
 
+/* Search bar */
+.search-container {
+  padding: 15px 4%;
+  border-bottom: 4px solid #222;
+  background-color: #000;
+}
+
+#movie-search {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
 /* Rows */
 main {
   padding: 20px 4%;
@@ -120,30 +140,52 @@ main {
   font-size: 1.2rem;
 }
 
-/* Video (featured) */
-.video-wrapper {
+/* Scroll container & buttons */
+.scroll-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
-  height: 0;
-  overflow: hidden;
-  max-width: 800px;
-  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
 }
 
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.scroll-btn {
+  background-color: rgba(0,0,0,0.6);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
   height: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 4px 4px 0;
+  transition: background 0.2s;
 }
 
-/* Posters row */
+.scroll-btn.left {
+  left: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
+
+.scroll-btn:hover {
+  background-color: rgba(0,0,0,0.9);
+}
+
+/* Poster rows */
 .row-posters {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  padding-bottom: 5px;
+  padding: 5px 0;
+  scroll-behavior: smooth;
+  flex: 1;
 }
 
 .row-posters::-webkit-scrollbar {
@@ -160,8 +202,8 @@ main {
   display: block;
   text-decoration: none;
   color: inherit;
-  min-width: 150px;
-  max-width: 200px;
+  min-width: 120px;
+  max-width: 160px;
   transition: transform 0.2s;
   cursor: pointer;
 }
@@ -172,8 +214,8 @@ main {
 }
 
 .poster-card p {
-  margin-top: 5px;
-  font-size: 0.9rem;
+  margin-top: 4px;
+  font-size: 0.8rem;
 }
 
 .poster-card:hover {
@@ -208,6 +250,12 @@ main {
   }
 
   .poster-card {
-    min-width: 130px;
+    min-width: 105px;
+    max-width: 130px;
+  }
+
+  .scroll-btn {
+    width: 30px;
+    font-size: 1.2rem;
   }
 }
