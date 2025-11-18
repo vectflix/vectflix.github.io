@@ -46,7 +46,42 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Gen V S2  EP5 ", link: "https://ww1.goojara.to/eGQPmN", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
       { title: "Gen V S2  EP6 ", link: "https://ww1.goojara.to/egEOgy", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
       { title: "Gen V S2  EP7 ", link: "https://ww1.goojara.to/eyPAgR", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
-      { title: "Gen V S2  EP8 ", link: "https://ww1.goojara.to/eabrA0", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" }
+      { title: "Gen V S2  EP8 ", link: "https://ww1.goojara.to/eabrA0", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
+      { title: "Stranger Things S1 EP1", link: "https://ww1.goojara.to/eraxjq", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP2", link: "https://ww1.goojara.to/e2ArDd", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP3", link: "https://ww1.goojara.to/eJwd84", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP4", link: "https://ww1.goojara.to/e5WXOW", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP5", link: "https://ww1.goojara.to/eLM89R", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP6", link: "https://ww1.goojara.to/ea7RQ2", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP7", link: "https://ww1.goojara.to/eO9XR5", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S1 EP8", link: "https://ww1.goojara.to/elwn6k", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+      { title: "Stranger Things S2 EP1", link: "https://ww1.goojara.to/eO9rgk", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP2", link: "https://ww1.goojara.to/elw9EE", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP3", link: "https://ww1.goojara.to/edMq4G", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP4", link: "https://ww1.goojara.to/eDy8bX", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP5", link: "https://ww1.goojara.to/eM2vbD", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP6", link: "https://ww1.goojara.to/eQBJb7", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP7", link: "https://ww1.goojara.to/enNE4O", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP8", link: "https://ww1.goojara.to/eXBDba", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S2 EP9", link: "https://ww1.goojara.to/ePQ2bp", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+      { title: "Stranger Things S3 EP1", link: "https://ww1.goojara.to/epQOyR", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP2", link: "https://ww1.goojara.to/ekDpZl", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP3", link: "https://ww1.goojara.to/eN9Dlm", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP4", link: "https://ww1.goojara.to/exGwnV", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP5", link: "https://ww1.goojara.to/eqGlr0", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP6", link: "https://ww1.goojara.to/e6MpD8", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP7", link: "https://ww1.goojara.to/eB462R", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S3 EP8", link: "https://ww1.goojara.to/eAe6rA", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+      { title: "Stranger Things S4 EP1", link: "https://ww1.goojara.to/eB4l4R", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP2", link: "https://ww1.goojara.to/eAeOeA", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP3", link: "https://ww1.goojara.to/e1exeJ", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP4", link: "https://ww1.goojara.to/emwGwn", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP5", link: "https://ww1.goojara.to/e86j6d", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP6", link: "https://ww1.goojara.to/eb8G8a", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP7", link: "https://ww1.goojara.to/e9WvW6", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP8", link: "https://ww1.goojara.to/e767Dj", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S4 EP9", link: "https://ww1.goojara.to/ejPGmr", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+      { title: "Stranger Things S5 (Coming soon)", link: "", thumbnail: "https://i.pinimg.com/736x/27/44/6c/27446c40d5464eea43dcb732c96654d3.jpg" }
    ],
     sciFiAction: [
       { title: "Madame Web", link: "https://ww1.goojara.to/mLRzxj", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
@@ -69,7 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Black phone", link: "https://ww1.goojara.to/mjP4Jx", thumbnail: "https://i.pinimg.com/1200x/d4/38/c0/d438c0273786d7f3463fd021be98add4.jpg" },
       { title: "Black phone 2", link: "https://ww1.goojara.to/mvpeQA", thumbnail: "https://i.pinimg.com/1200x/56/3d/4c/563d4c11593a3e371bec51daeb148657.jpg" },
       { title: "Good Fortune (2025)", link: "https://ww1.goojara.to/m2a0rx", thumbnail: "https://i.pinimg.com/1200x/1b/82/2b/1b822b5345a8a55a137215e90ae2167b.jpg" },
-      { title: "The Roses", link: "https://ww1.goojara.to/mwORVx", thumbnail: "https://i.pinimg.com/1200x/19/e8/36/19e8363c5aef0f985ad3eed5bcbfa983.jpg" }
+      { title: "The Roses", link: "https://ww1.goojara.to/mwORVx", thumbnail: "https://i.pinimg.com/1200x/19/e8/36/19e8363c5aef0f985ad3eed5bcbfa983.jpg" },
+      { title: "The Long Walk", link: "https://ww1.goojara.to/mGQVwR", thumbnail: "https://i.pinimg.com/1200x/8b/3a/c4/8b3ac47302c567b3e2dc1909adb57897.jpg" }
     ]
   };
 
@@ -139,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
