@@ -1,102 +1,553 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vectflix</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vectflix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* General Setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Hero section and Gradient Overlay */
+        .hero {
+            position: relative;
+            height: 70vh;
+            background-image: url("https://i.pinimg.com/1200x/b0/4b/50/b04b5087eda713ec04a43ea6a5a0ec9a.jpg");
+            background-size: cover;
+            background-position: center;
+            border-bottom: 8px solid #222;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            /* Dark gradient from bottom up */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.8) 100%);
+        }
+
+        .navbar {
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #e50914; /* Netflix Red */
+        }
+
+        /* Hero Content Styling */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            height: calc(70vh - 80px); /* Adjust height for navbar */
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            margin-top: 10px;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 400;
+        }
+
+        .email-input {
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            color: #000 !important;
+        }
+
+        /* Movie Rows Container */
+        main {
+            padding: 20px 4%;
+        }
+
+        .row h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding-left: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Scroll container & buttons */
+        .scroll-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .scroll-btn {
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 95%; /* Adjust height to cover posters */
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-container:hover .scroll-btn {
+            opacity: 1;
+        }
+
+        .scroll-btn.left {
+            left: 0;
+            border-radius: 0 4px 4px 0;
+            transform: translateY(-50%) scaleX(-1); /* Flip right arrow to point left */
+        }
+
+        .scroll-btn.right {
+            right: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .scroll-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Poster rows (Horizontal Scroll) */
+        .row-posters {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar on supported browsers */
+        .row-posters::-webkit-scrollbar {
+            height: 0;
+        }
+        .row-posters {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Cards */
+        .poster-card {
+            min-width: 150px; 
+            max-width: 250px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            flex-shrink: 0;
+            border-radius: 4px;
+        }
+
+        .poster-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .poster-card:hover {
+            transform: scale(1.05);
+            z-index: 20;
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.7);
+        }
+
+        /* ==================================== */
+        /* VIDEO MODAL STYLES */
+        /* ==================================== */
+        .video-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.98);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-modal-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: -40px; 
+            right: 0;
+            background: #e50914;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 35px;
+            text-align: center;
+            transition: background 0.2s, transform 0.1s;
+        }
+        
+        /* Responsive Video Wrapper (16:9 Aspect Ratio) */
+        .video-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 9 / 16 = 0.5625 */
+            position: relative;
+            height: 0;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
+        }
+        
+        .video-responsive iframe, .video-responsive div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #000;
+        }
+    </style>
 </head>
 <body>
-  <!-- Top hero / landing section -->
-  <header class="hero">
-    <div class="overlay"></div>
+    <!-- Top hero / landing section -->
+    <header class="hero">
+        <div class="overlay"></div>
 
-    <nav class="navbar">
-      <div class="logo">Vectflix</div>
-      <button class="sign-in-btn">Sign In</button>
-    </nav>
+        <nav class="navbar flex items-center justify-between p-5 md:px-10">
+            <div class="logo">Vectflix</div>
+            <button class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition duration-200 sign-in-btn">
+                Sign In
+            </button>
+        </nav>
 
-    <div class="hero-content">
-      <h1>Unlimited movies, series and more.</h1>
-      <h2>Watch anywhere. Cancel anytime.</h2>
-      <p class="hero-text">
-        Ready to watch? Enter your email to create or restart your membership.
-      </p>
+        <div class="hero-content flex flex-col justify-center items-center text-center px-4">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold max-w-4xl">
+                Unlimited movies, series and more.
+            </h1>
+            <h2 class="mt-4 text-lg sm:text-xl md:text-2xl font-normal">
+                Watch anywhere. Cancel anytime.
+            </h2>
+            <p class="mt-6 text-base sm:text-lg max-w-3xl">
+                Ready to watch? Enter your email to create or restart your membership.
+            </p>
 
-      <form class="email-form">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Get Started</button>
-      </form>
+            <form class="flex flex-col md:flex-row mt-6 gap-3 w-full max-w-xl" onsubmit="event.preventDefault(); showVideoModal({title: 'Sign In Required', link: ''});">
+                <input 
+                    type="email" 
+                    placeholder="Email address" 
+                    required 
+                    class="email-input flex-grow p-4 rounded-md border border-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600 text-black placeholder-gray-500"
+                />
+                <button 
+                    type="submit" 
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold text-lg py-4 px-6 rounded-md transition duration-200 md:w-auto"
+                >
+                    Get Started &gt;
+                </button>
+            </form>
+        </div>
+    </header>
+
+    <div class="search-container py-4 px-4 sm:px-10 bg-gray-900 border-b border-gray-800">
+        <input 
+            type="text" 
+            id="movie-search" 
+            placeholder="Search thousands of titles..." 
+            aria-label="Search movies"
+            class="w-full max-w-3xl block mx-auto p-3 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 bg-gray-800 text-white"
+        >
     </div>
-  </header>
 
-  <div class="search-container">
-    <input type="text" id="movie-search" placeholder="Search movies...">
-  </div>
+    <main>
+        <!-- Dynamic content rows -->
+        <section class="row mb-8" id="series-section">
+            <h3 class="text-xl md:text-2xl font-semibold mb-3">Series</h3>
+            <div class="scroll-container">
+                <button class="scroll-btn left hover:bg-gray-800 transition duration-150">&gt;</button>
+                <div class="row-posters" id="series-row"></div>
+                <button class="scroll-btn right hover:bg-gray-800 transition duration-150">&gt;</button>
+            </div>
+        </section>
 
-  <main>
-    <!-- Series row -->
-    <section class="row">
-      <h3>Series</h3>
-      <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="series-row"></div>
-        <button class="scroll-btn right">&gt;</button>
-      </div>
-    </section>
+        <section class="row mb-8" id="scifi-section">
+            <h3 class="text-xl md:text-2xl font-semibold mb-3">Sci-Fi &amp; Action</h3>
+            <div class="scroll-container">
+                <button class="scroll-btn left hover:bg-gray-800 transition duration-150">&gt;</button>
+                <div class="row-posters" id="scifi-row"></div>
+                <button class="scroll-btn right hover:bg-gray-800 transition duration-150">&gt;</button>
+            </div>
+        </section>
 
-    <!-- Sci-Fi & Action row -->
-    <section class="row">
-      <h3>Sci-Fi &amp; Action</h3>
-      <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="scifi-row"></div>
-        <button class="scroll-btn right">&gt;</button>
-      </div>
-    </section>
+        <section class="row mb-8" id="family-section">
+            <h3 class="text-xl md:text-2xl font-semibold mb-3">Family &amp; Animation</h3>
+            <div class="scroll-container">
+                <button class="scroll-btn left hover:bg-gray-800 transition duration-150">&gt;</button>
+                <div class="row-posters" id="family-row"></div>
+                <button class="scroll-btn right hover:bg-gray-800 transition duration-150">&gt;</button>
+            </div>
+        </section>
 
-    <!-- Family & Animation row -->
-    <section class="row">
-      <h3>Family &amp; Animation</h3>
-      <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="family-row"></div>
-        <button class="scroll-btn right">&gt;</button>
-      </div>
-    </section>
+        <section class="row mb-8" id="drama-section">
+            <h3 class="text-xl md:text-2xl font-semibold mb-3">Drama &amp; Blockbusters</h3>
+            <div class="scroll-container">
+                <button class="scroll-btn left hover:bg-gray-800 transition duration-150">&gt;</button>
+                <div class="row-posters" id="drama-row"></div>
+                <button class="scroll-btn right hover:bg-gray-800 transition duration-150">&gt;</button>
+            </div>
+        </section>
+    </main>
 
-    <!-- Drama & Blockbusters row -->
-    <section class="row">
-      <h3>Drama &amp; Blockbusters</h3>
-      <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="drama-row"></div>
-        <button class="scroll-btn right">&gt;</button>
-      </div>
-    </section>
-  </main>
+    <footer class="border-t-8 border-gray-800 py-10 text-center text-gray-400 text-sm">
+        <p>Vectflix Demo | Fictional Content for Portfolio Use Only | &copy; 2025</p>
+    </footer>
 
-  <footer class="footer">
-    <p>Vectflix | <a href="https://Instagram.com/vecteezy_1" target="_blank">Instagram</a></p>
-  </footer>
+    <!-- Video Modal Container (Hidden by Default) -->
+    <div id="video-modal" class="video-modal-overlay">
+        <div class="relative w-full max-w-4xl p-0">
+            <button class="modal-close-btn bg-red-600 hover:bg-red-700 text-white" onclick="closeVideoModal()" aria-label="Close Video Player">
+                X
+            </button> 
+            <div id="video-embed-area" class="video-responsive">
+                <!-- Video iframe or error message is injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
 
-  <script src="script.js"></script>
-  <script>
-    // Scroll buttons functionality
-    const scrollContainers = document.querySelectorAll(".scroll-container");
-    scrollContainers.forEach(container => {
-      const row = container.querySelector(".row-posters");
-      const leftBtn = container.querySelector(".scroll-btn.left");
-      const rightBtn = container.querySelector(".scroll-btn.right");
+    <script>
+        // Data structure containing all movie/series listings
+        const movies = {
+            series: [
+                { title: "Stranger Things 5 – First 5 Minutes", link: "https://www.youtube.com/watch?v=vhFPHYgILN0", thumbnail: "https://img.youtube.com/vi/vhFPHYgILN0/maxresdefault.jpg" },
+                { title: "KAOS S1 EP1", link: "https://ww1.goojara.to/eWkApj", thumbnail: "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg" },
+                { title: "The Conjuring: Last Rites (2025)", link: "https://ww1.goojara.to/m1eZL5", thumbnail: "https://i.pinimg.com/1200x/76/3b/7d/763b7de1e68b213723bf35b30b3d54d6.jpg" },
+                { title: "IT: Welcome to Derry S1 EP1", link: "https://ww1.goojara.to/evpq4L", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
+                { title: "Wednesday S1 EP1", link: "https://ww1.goojara.to/eZD6ve", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+                { title: "Gen V S1 EP1 ", link: "https://ww1.goojara.to/eab8jW", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
+                { title: "Stranger Things S1 EP1", link: "https://ww1.goojara.to/eraxjq", thumbnail: "https://i.pinimg.com/736x/88/56/4f/88564fb3a6a56236d00851382b59a036.jpg" },
+                { title: "Stranger Things S2 EP1", link: "https://ww1.goojara.to/eO9rgk", thumbnail: "https://i.pinimg.com/1200x/b2/53/97/b2539750566e3c5d5ab43a51df6c4085.jpg" },
+                { title: "Stranger Things S3 EP1", link: "https://ww1.goojara.to/epQOyR", thumbnail: "https://i.pinimg.com/1200x/68/e5/2d/68e52d36b12d8ace015f580f6aaaa858.jpg" },
+                { title: "Stranger Things S4 EP1", link: "https://ww1.goojara.to/eB4l4R", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
+                { title: "Wednesday S2 EP1", link: "https://ww1.goojara.to/eyPAMO", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
+                { title: "Stranger Things S5 (Coming soon)", link: "", thumbnail: "https://i.pinimg.com/736x/27/44/6c/27446c40d5464eea43dcb732c96654d3.jpg" }
+            ],
+            sciFiAction: [
+                { title: "Madame Web", link: "https://www.youtube.com/watch?v=F5g0676h48k", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
+                { title: "Ghostbusters: Afterlife", link: "https://ww1.goojara.to/mPLbxB", thumbnail: "https://i.pinimg.com/736x/e3/da/95/e3da9593b2c029f9cf980a474cebcf80.jpg" },
+                { title: "Frankenstein (2025)", link: "https://ww1.goojara.to/mJRNdD", thumbnail: "https://i.pinimg.com/1200x/d6/09/1a/d6091a76cf4995d5a9d49db700fc73a0.jpg" },
+                { title: "The Matrix Resurrections", link: "https://www.youtube.com/watch?v=9ix7TUGAlhw", thumbnail: "https://i.pinimg.com/736x/ed/45/16/ed4516338fa5df348c13a2a7ce1e7998.jpg" },
+                { title: "Nobody", link: "https://ww1.goojara.to/mqG4E8", thumbnail: "https://i.pinimg.com/736x/b4/5a/bc/b45abcbfcdd23c32abfcbfed131f0bb5.jpg" },
+                { title: "Nobody 2", link: "https://ww1.goojara.to/mLRqww", thumbnail: "https://i.pinimg.com/1200x/78/03/eb/7803eb0afc71d821b4c768f32bb01caf.jpg" },
+                { title: "Playdate", link: "https://ww1.goojara.to/mLRq8w", thumbnail: "https://i.pinimg.com/736x/1f/88/32/1f8832bccdce3ac212ee33514d80c34a.jpg" }
+            ],
+            familyAnimation: [
+                { title: "Bad Guys 2", link: "https://ww1.goojara.to/mZDwVe", thumbnail: "https://i.pinimg.com/736x/f4/3d/33/f43d33f2ab89e2fc0901230fdd319a9a.jpg" },
+                { title: "KPop Demon Hunters", link: "https://ww1.goojara.to/m5Qv6R", thumbnail: "https://i.pinimg.com/1200x/4b/86/e1/4b86e18b0a43210ff79558f3ed211b62.jpg" },
+                { title: "The Twits", link: "https://ww1.goojara.to/mRzeXn", thumbnail: "https://i.pinimg.com/736x/76/0e/a6/760ea62964806342dc5499a65b361950.jpg" },
+                { title: "Sneaks", link: "https://ww1.goojara.to/m06AVr", thumbnail: "https://i.pinimg.com/1200x/d3/6c/83/d36c83753580f8849bc01fae7f28f131.jpg" },
+                { title: "Elio Trailer", link: "https://www.youtube.com/watch?v=F5g0676h48k", thumbnail: "https://i.pinimg.com/736x/03/35/08/033508397c8971ca22f046b901265afe.jpg" }
+            ],
+            dramaBlockbusters: [
+                { title: "The Furioza", link: "https://ww1.goojara.to/mZDbbr", thumbnail: "https://i.pinimg.com/1200x/b1/5b/a4/b15ba4514a2058c48bbd8eec6060d666.jpg" },
+                { title: "Roofman 2025", link: "https://ww1.goojara.to/mrARxA", thumbnail: "https://i.pinimg.com/736x/03/80/b2/0380b2319ded86900ce14fd5c3e81364.jpg" },
+                { title: "Black phone", link: "https://ww1.goojara.to/mjP4Jx", thumbnail: "https://i.pinimg.com/1200x/d4/38/c0/d438c0273786d7f3463fd021be98add4.jpg" },
+                { title: "Black phone 2", link: "https://ww1.goojara.to/mvpeQA", thumbnail: "https://i.pinimg.com/1200x/56/3d/4c/563d4c11593a3e371bec51daeb148657.jpg" },
+                { title: "Good Fortune (2025)", link: "https://ww1.goojara.to/m2a0rx", thumbnail: "https://i.pinimg.com/1200x/1b/82/2b/1b822b5345a8a55a137215e90ae2167b.jpg" },
+                { title: "The Smashing Machine", link: "https://ww1.goojara.to/myPGEw", thumbnail: "https://i.pinimg.com/736x/46/d9/44/46d944b7f3cf9b68b9a204a0c7c15821.jpg" }
+            ]
+        };
 
-      leftBtn.addEventListener("click", () => {
-        row.scrollBy({ left: -300, behavior: "smooth" });
-      });
-      rightBtn.addEventListener("click", () => {
-        row.scrollBy({ left: 300, behavior: "smooth" });
-      });
-    });
-  </script>
+        const videoModal = document.getElementById("video-modal");
+        const videoEmbedArea = document.getElementById("video-embed-area");
+        
+        // Utility function to convert YouTube watch links to embed links
+        function getEmbedUrl(movieLink) {
+            if (movieLink.includes("youtube.com/watch")) {
+                try {
+                    const url = new URL(movieLink);
+                    const videoId = url.searchParams.get('v');
+                    if (videoId) {
+                        // Returns the embed URL with autoplay enabled
+                        return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    }
+                } catch (e) {
+                    console.error("Invalid YouTube URL:", movieLink, e);
+                }
+            }
+            
+            // For non-YouTube links, we force them to use the fallback message in this demo
+            if (movieLink.startsWith("http") && !movieLink.includes("youtube.com")) {
+                return null; 
+            }
+            
+            return null; 
+        }
+
+        // Function to open the modal (Global for onclick attribute)
+        window.showVideoModal = (movie) => {
+            const embedUrl = getEmbedUrl(movie.link);
+            
+            if (!embedUrl) {
+                // Fallback UI for non-embeddable or empty links
+                videoEmbedArea.innerHTML = `<div class="w-full h-full flex flex-col justify-center items-center p-10 bg-gray-900 rounded-lg">
+                    <p class="text-2xl font-bold text-red-600 mb-3">${movie.title}</p>
+                    <p class="text-lg text-gray-400 text-center">
+                        This is a demo. Content with external links (like Goojara or coming soon titles) is not available for embedded playback.
+                    </p>
+                    <p class="mt-4 text-sm text-gray-500">Try a title with a YouTube link (e.g., Stranger Things 5 or Madame Web).</p>
+                </div>`;
+            } else {
+                // Inject the iframe for embedding
+                videoEmbedArea.innerHTML = `
+                    <iframe 
+                        src="${embedUrl}" 
+                        title="${movie.title} Video Player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                    ></iframe>
+                `;
+            }
+            
+            // Show the modal
+            videoModal.classList.add("open");
+        };
+        
+        // Function to close the modal (Global for onclick attribute)
+        window.closeVideoModal = () => {
+            videoModal.classList.remove("open");
+            // Stop the video from playing by clearing the iframe content
+            videoEmbedArea.innerHTML = '';
+        };
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            // Close modal on outside click (if the click is on the overlay itself)
+            videoModal.addEventListener('click', (e) => {
+                if (e.target.id === 'video-modal') {
+                    closeVideoModal();
+                }
+            });
+
+            // Creates a movie poster card element
+            function createPosterCard(movie) {
+                const div = document.createElement("a"); 
+                div.className = "poster-card group block";
+                div.title = movie.title;
+                
+                // Set click listener to open the modal
+                div.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    showVideoModal(movie);
+                }); 
+
+                const img = document.createElement("img");
+                img.src = movie.thumbnail;
+                img.alt = `Poster for ${movie.title}`;
+                img.loading = "lazy"; 
+                img.className = "w-full h-auto rounded-md shadow-lg group-hover:scale-[1.02] transition duration-200";
+                img.onerror = function() {
+                    this.onerror = null; 
+                    this.src = 'https://placehold.co/150x225/222/FFF?text=No+Poster';
+                };
+
+                const p = document.createElement("p");
+                p.textContent = movie.title;
+                p.className = "text-sm text-center py-2 px-1 truncate group-hover:text-red-500";
+
+                div.appendChild(img);
+                div.appendChild(p);
+                return div;
+            }
+
+            // Renders the movies into the specified row element
+            function renderRow(rowId, movieList) {
+                const rowDiv = document.getElementById(rowId);
+                const section = rowDiv ? rowDiv.closest('.row') : null;
+                if (!rowDiv || !section) return;
+
+                rowDiv.innerHTML = "";
+                if (movieList.length > 0) {
+                    section.style.display = 'block';
+                    movieList.forEach(movie => rowDiv.appendChild(createPosterCard(movie)));
+                } else {
+                    // Hide the entire row if no movies match the filter
+                    section.style.display = 'none';
+                }
+            }
+            
+            // Initial rendering of all rows
+            renderRow("series-row", movies.series);
+            renderRow("scifi-row", movies.sciFiAction);
+            renderRow("family-row", movies.familyAnimation);
+            renderRow("drama-row", movies.dramaBlockbusters);
+
+            // Scroll buttons functionality
+            document.querySelectorAll(".scroll-container").forEach(container => {
+                const row = container.querySelector(".row-posters");
+                const leftBtn = container.querySelector(".scroll-btn.left");
+                const rightBtn = container.querySelector(".scroll-btn.right");
+
+                // Scroll amount is based on the container width for responsive scrolling
+                const scrollAmount = row.clientWidth * 0.8; 
+
+                leftBtn.addEventListener("click", () => {
+                    row.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+                });
+                rightBtn.addEventListener("click", () => {
+                    row.scrollBy({ left: scrollAmount, behavior: "smooth" });
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById("movie-search");
+            
+            if (searchInput) {
+                searchInput.addEventListener("input", () => {
+                    const query = searchInput.value.toLowerCase();
+
+                    // Filter and render all rows based on the search query
+                    function filterAndRenderAll() {
+                        renderRow("series-row", movies.series.filter(movie => movie.title.toLowerCase().includes(query)));
+                        renderRow("scifi-row", movies.sciFiAction.filter(movie => movie.title.toLowerCase().includes(query)));
+                        renderRow("family-row", movies.familyAnimation.filter(movie => movie.title.toLowerCase().includes(query)));
+                        renderRow("drama-row", movies.dramaBlockbusters.filter(movie => movie.title.toLowerCase().includes(query)));
+                    }
+
+                    filterAndRenderAll();
+                });
+            }
+
+            // Sign In button handler 
+            document.querySelector('.sign-in-btn').addEventListener('click', () => {
+                 showVideoModal({ 
+                    title: "Authentication Demo", 
+                    link: "" // Empty link triggers the non-embeddable fallback UI
+                 });
+            });
+        });
+    </script>
 </body>
 </html>
