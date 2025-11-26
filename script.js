@@ -91,7 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Frankenstein (2025)", link: "https://ww1.goojara.to/mJRNdD", thumbnail: "https://i.pinimg.com/1200x/d6/09/1a/d6091a76cf4995d5a9d49db700fc73a0.jpg" },
       { title: "The Matrix", link: "https://ww1.goojara.to/m30Xp3", thumbnail: "https://i.pinimg.com/736x/ed/45/16/ed4516338fa5df348c13a2a7ce1e7998.jpg" },
       { title: "Nobody", link: "https://ww1.goojara.to/mqG4E8", thumbnail: "https://i.pinimg.com/736x/b4/5a/bc/b45abcbfcdd23c32abfcbfed131f0bb5.jpg" },
-      { title: "Nobody 2", link: "https://ww1.goojara.to/mLRqww", thumbnail: "https://i.pinimg.com/1200x/78/03/eb/7803eb0afc71d821b4c768f32bb01caf.jpg" }
+      { title: "Nobody 2", link: "https://ww1.goojara.to/mLRqww", thumbnail: "https://i.pinimg.com/1200x/78/03/eb/7803eb0afc71d821b4c768f32bb01caf.jpg" },
+      { title: "Playdate", link: "https://ww1.goojara.to/mLRq8w", thumbnail: "https://i.pinimg.com/736x/1f/88/32/1f8832bccdce3ac212ee33514d80c34a.jpg" }
     ],
     familyAnimation: [
       { title: "Bad Guys 2", link: "https://ww1.goojara.to/mZDwVe", thumbnail: "https://i.pinimg.com/736x/f4/3d/33/f43d33f2ab89e2fc0901230fdd319a9a.jpg" },
@@ -107,7 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Black phone 2", link: "https://ww1.goojara.to/mvpeQA", thumbnail: "https://i.pinimg.com/1200x/56/3d/4c/563d4c11593a3e371bec51daeb148657.jpg" },
       { title: "Good Fortune (2025)", link: "https://ww1.goojara.to/m2a0rx", thumbnail: "https://i.pinimg.com/1200x/1b/82/2b/1b822b5345a8a55a137215e90ae2167b.jpg" },
       { title: "The Roses", link: "https://ww1.goojara.to/mwORVx", thumbnail: "https://i.pinimg.com/1200x/19/e8/36/19e8363c5aef0f985ad3eed5bcbfa983.jpg" },
-      { title: "The Long Walk", link: "https://ww1.goojara.to/mGQVwR", thumbnail: "https://i.pinimg.com/1200x/8b/3a/c4/8b3ac47302c567b3e2dc1909adb57897.jpg" }
+      { title: "The Long Walk", link: "https://ww1.goojara.to/mGQVwR", thumbnail: "https://i.pinimg.com/1200x/8b/3a/c4/8b3ac47302c567b3e2dc1909adb57897.jpg" },
+      { title: "The Smashing Machine", link: "https://ww1.goojara.to/myPGEw", thumbnail: "https://i.pinimg.com/736x/46/d9/44/46d944b7f3cf9b68b9a204a0c7c15821.jpg" }
     ]
   };
 
@@ -177,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
