@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       heroText.parentElement.appendChild(welcomeBox);
     }
     if (welcomeBox) {
-      welcomeBox.textContent = `Membership active for ${email} (fake account for fun 😄)`;
+      welcomeBox.textContent = `Membership active for ${email}`;
     }
   }
 
@@ -276,3 +276,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
