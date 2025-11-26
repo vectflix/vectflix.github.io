@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "IT: Welcome to Derry S1 EP1", link: "https://ww1.goojara.to/evpq4L", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
       { title: "IT: Welcome to Derry S1 EP2", link: "https://ww1.goojara.to/e4W0BM", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
       { title: "IT: Welcome to Derry S1 EP3", link: "https://ww1.goojara.to/e4W0BM", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
+      { title: "IT: Welcome to Derry S1 EP4", link: "https://ww1.goojara.to/eN9zm7", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
+      { title: "IT: Welcome to Derry S1 EP5", link: "https://ww1.goojara.to/e5Q7p5", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
       { title: "Wednesday S1 EP1", link: "https://ww1.goojara.to/eZD6ve", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
       { title: "Wednesday S1 EP2", link: "https://ww1.goojara.to/e06bzr", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
       { title: "Wednesday S1 EP3", link: "https://ww1.goojara.to/e764eL", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
@@ -175,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
