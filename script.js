@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = input.value.trim();
       localStorage.setItem("vectflixEmail", email);
       setLoggedIn(email);
-      alert(`Welcome to Vectflix, ${email}! (This is a fake membership for fun)`);
+      alert(`Welcome to Vectflix, ${email}!`);
       input.value = "";
     });
   }
@@ -276,4 +276,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
