@@ -1,92 +1,5 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-  /* --------------------------
-     1) Fake membership / sign up
-     -------------------------- */
-
-  const emailForm = document.querySelector(".email-form");
-  const heroTitle = document.querySelector(".hero h1");
-  const heroSubtitle = document.querySelector(".hero h2");
-  const heroText = document.querySelector(".hero-text");
-  const signInBtn = document.querySelector(".sign-in-btn");
-
-  const storedEmail = localStorage.getItem("vectflixEmail");
-
-  function setLoggedIn(email) {
-    if (heroTitle) heroTitle.textContent = "Welcome to Vectflix!";
-    if (heroSubtitle) heroSubtitle.textContent = `Logged in as ${email}`;
-    if (heroText) heroText.textContent = "Enjoy your curated movies and series.";
-    if (emailForm) emailForm.style.display = "none";
-    if (signInBtn) signInBtn.textContent = "Sign Out";
-
-    let welcomeBox = document.querySelector(".welcome-box");
-    if (!welcomeBox && heroText && heroText.parentElement) {
-      welcomeBox = document.createElement("div");
-      welcomeBox.className = "welcome-box";
-      heroText.parentElement.appendChild(welcomeBox);
-    }
-    if (welcomeBox) {
-      welcomeBox.textContent = `Membership active for ${email}`;
-    }
-  }
-
-  function setLoggedOut() {
-    if (heroTitle)
-      heroTitle.textContent = "Unlimited movies, series and more.";
-    if (heroSubtitle)
-      heroSubtitle.textContent = "Watch anywhere. Cancel anytime.";
-    if (heroText)
-      heroText.textContent =
-        "Ready to watch? Enter your email to create or restart your membership.";
-    if (emailForm) emailForm.style.display = "flex";
-    if (signInBtn) signInBtn.textContent = "Sign In";
-
-    const welcomeBox = document.querySelector(".welcome-box");
-    if (welcomeBox) welcomeBox.remove();
-  }
-
-  if (storedEmail) {
-    setLoggedIn(storedEmail);
-  } else {
-    setLoggedOut();
-  }
-
-  if (emailForm) {
-    emailForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const input = emailForm.querySelector("input[type='email']");
-      if (!input || !input.value.trim()) return;
-
-      const email = input.value.trim();
-      localStorage.setItem("vectflixEmail", email);
-      setLoggedIn(email);
-      alert(`Welcome to Vectflix, ${email}!`);
-      input.value = "";
-    });
-  }
-
-  if (signInBtn) {
-    signInBtn.addEventListener("click", () => {
-      const currentEmail = localStorage.getItem("vectflixEmail");
-      if (currentEmail) {
-        const confirmSignOut = confirm("Sign out of Vectflix?");
-        if (confirmSignOut) {
-          localStorage.removeItem("vectflixEmail");
-          setLoggedOut();
-        }
-      } else {
-        const input = emailForm?.querySelector("input[type='email']");
-        if (input) {
-          input.focus();
-          input.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      }
-    });
-  }
-
-  /* --------------------------
-     2) Movies data (your list)
-     -------------------------- */
-
   const movies = {
     series: [
       { title: "Stranger Things 5 – First 5 Minutes", link: "https://www.youtube.com/watch?v=vhFPHYgILN0", thumbnail: "https://img.youtube.com/vi/vhFPHYgILN0/maxresdefault.jpg" },
@@ -171,8 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Stranger Things S4 EP8", link: "https://ww1.goojara.to/e767Dj", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
       { title: "Stranger Things S4 EP9", link: "https://ww1.goojara.to/ejPGmr", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
       { title: "Stranger Things S5 (Coming soon)", link: "", thumbnail: "https://i.pinimg.com/736x/27/44/6c/27446c40d5464eea43dcb732c96654d3.jpg" }
-    ],
-
+   ],
     sciFiAction: [
       { title: "Madame Web", link: "https://ww1.goojara.to/mLRzxj", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
       { title: "Ghostbusters: Afterlife", link: "https://ww1.goojara.to/mPLbxB", thumbnail: "https://i.pinimg.com/736x/e3/da/95/e3da9593b2c029f9cf980a474cebcf80.jpg" },
@@ -182,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Nobody 2", link: "https://ww1.goojara.to/mLRqww", thumbnail: "https://i.pinimg.com/1200x/78/03/eb/7803eb0afc71d821b4c768f32bb01caf.jpg" },
       { title: "Playdate", link: "https://ww1.goojara.to/mLRq8w", thumbnail: "https://i.pinimg.com/736x/1f/88/32/1f8832bccdce3ac212ee33514d80c34a.jpg" }
     ],
-
     familyAnimation: [
       { title: "Bad Guys 2", link: "https://ww1.goojara.to/mZDwVe", thumbnail: "https://i.pinimg.com/736x/f4/3d/33/f43d33f2ab89e2fc0901230fdd319a9a.jpg" },
       { title: "KPop Demon Hunters", link: "https://ww1.goojara.to/m5Qv6R", thumbnail: "https://i.pinimg.com/1200x/4b/86/e1/4b86e18b0a43210ff79558f3ed211b62.jpg" },
@@ -190,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Sneaks", link: "https://ww1.goojara.to/m06AVr", thumbnail: "https://i.pinimg.com/1200x/d3/6c/83/d36c83753580f8849bc01fae7f28f131.jpg" },
       { title: "Elio", link: "https://ww1.goojara.to/mzERGj", thumbnail: "https://i.pinimg.com/736x/03/35/08/033508397c8971ca22f046b901265afe.jpg" }
     ],
-
     dramaBlockbusters: [
       { title: "The Furioza", link: "https://ww1.goojara.to/mZDbbr", thumbnail: "https://i.pinimg.com/1200x/b1/5b/a4/b15ba4514a2058c48bbd8eec6060d666.jpg" },
       { title: "Roofman 2025", link: "https://ww1.goojara.to/mrARxA", thumbnail: "https://i.pinimg.com/736x/03/80/b2/0380b2319ded86900ce14fd5c3e81364.jpg" },
@@ -203,20 +113,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
   };
 
-  /* --------------------------
-     3) Create cards & render rows
-     -------------------------- */
-
   function createPosterCard(movie) {
     const a = document.createElement("a");
     a.className = "poster-card";
     a.href = movie.link;
-    if (movie.link) a.target = "_blank"; // don’t open empty links
+    a.target = "_blank";
+
     const img = document.createElement("img");
     img.src = movie.thumbnail;
     img.alt = movie.title;
+
     const p = document.createElement("p");
     p.textContent = movie.title;
+
     a.appendChild(img);
     a.appendChild(p);
     return a;
@@ -234,10 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderRow("family-row", movies.familyAnimation);
   renderRow("drama-row", movies.dramaBlockbusters);
 
-  /* --------------------------
-     4) Scroll buttons
-     -------------------------- */
-
+  // Scroll buttons
   document.querySelectorAll(".scroll-container").forEach(container => {
     const row = container.querySelector(".row-posters");
     const leftBtn = container.querySelector(".scroll-btn.left");
@@ -251,10 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* --------------------------
-     5) Search
-     -------------------------- */
-
+  // Search functionality
   const searchInput = document.getElementById("movie-search");
   if (searchInput) {
     searchInput.addEventListener("input", () => {
@@ -276,5 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+
+
+
 
 
