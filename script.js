@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Stranger Things S4 EP7", link: "https://ww1.goojara.to/e9WvW6", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
       { title: "Stranger Things S4 EP8", link: "https://ww1.goojara.to/e767Dj", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
       { title: "Stranger Things S4 EP9", link: "https://ww1.goojara.to/ejPGmr", thumbnail: "https://i.pinimg.com/1200x/11/d6/6f/11d66f306377da54cfade058f8f785a4.jpg" },
-      { title: "Stranger Things S5 (Coming soon)", link: "", thumbnail: "https://i.pinimg.com/736x/27/44/6c/27446c40d5464eea43dcb732c96654d3.jpg" }
+      { title: "Stranger Things S5 EP1", link: "https://lok-lok.cc/spa/videoPlayPage/movies/stranger-things-wsymkZvcaU5?id=4956801153355891744&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/27/44/6c/27446c40d5464eea43dcb732c96654d3.jpg" }
    ],
     sciFiAction: [
       { title: "Madame Web", link: "https://ww1.goojara.to/mLRzxj", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
@@ -179,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
