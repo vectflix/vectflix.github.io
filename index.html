@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Top hero / landing section -->
+  <!-- Top hero / landing section with featured slider -->
   <header class="hero">
     <div class="overlay"></div>
 
@@ -17,10 +17,22 @@
     </nav>
 
     <div class="hero-content">
-      <h1>Unlimited movies, series and more.</h1>
-      <h2>Watch anywhere. Cancel anytime.</h2>
+      <div class="featured-wrapper">
+        <button class="featured-btn prev">&lt;</button>
+
+        <a id="featured-link" class="featured-card" href="#" target="_blank">
+          <img id="featured-image" src="" alt="Featured" />
+          <div class="featured-info">
+            <h1 id="featured-title">Featured Title</h1>
+            <p id="featured-tagline">Featured tagline goes here.</p>
+          </div>
+        </a>
+
+        <button class="featured-btn next">&gt;</button>
+      </div>
+
       <p class="hero-text">
-        Ready to watch? Enter your email to create or restart your membership.
+        Unlimited movies, series and more. Watch anywhere. Cancel anytime.
       </p>
 
       <form class="email-form">
@@ -30,29 +42,12 @@
     </div>
   </header>
 
+  <!-- Search bar -->
   <div class="search-container">
     <input type="text" id="movie-search" placeholder="Search movies...">
   </div>
 
   <main>
-    <!-- FEATURED SLIDER -->
-    <section class="featured-section">
-      <h3>Featured</h3>
-      <div class="featured-slider">
-        <button class="featured-btn prev">&#10094;</button>
-        <div class="featured-content">
-          <a id="featured-link" href="#" target="_blank">
-            <img id="featured-image" src="" alt="Featured" />
-            <div class="featured-info">
-              <h4 id="featured-title"></h4>
-              <p id="featured-tagline"></p>
-            </div>
-          </a>
-        </div>
-        <button class="featured-btn next">&#10095;</button>
-      </div>
-    </section>
-
     <!-- Series row -->
     <section class="row">
       <h3>Series</h3>
@@ -119,21 +114,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Scroll buttons functionality (for all rows)
-    const scrollContainers = document.querySelectorAll(".scroll-container");
-    scrollContainers.forEach(container => {
-      const row = container.querySelector(".row-posters");
-      const leftBtn = container.querySelector(".scroll-btn.left");
-      const rightBtn = container.querySelector(".scroll-btn.right");
-
-      leftBtn.addEventListener("click", () => {
-        row.scrollBy({ left: -300, behavior: "smooth" });
-      });
-      rightBtn.addEventListener("click", () => {
-        row.scrollBy({ left: 300, behavior: "smooth" });
-      });
-    });
-  </script>
 </body>
 </html>
