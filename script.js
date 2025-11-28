@@ -1,6 +1,34 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const movies = {
+    // === FEATURED MOVIES (for the top slider) ===
+    featuredMovies: [
+      {
+        title: "Stranger Things",
+        link: "https://lok-lok.cc/spa/videoPlayPage/movies/stranger-things-wsymkZvcaU5?id=4956801153355891744&type=/movie/detail&lang=en",
+        thumbnail: "https://i.pinimg.com/736x/91/17/75/9117751636528b25a7b4687cab63572d.jpg",
+        tagline: "The upside down is calling again."
+      },
+      {
+        title: "Wednesday",
+        link: "https://lok-lok.cc/spa/videoPlayPage/movies/wednesday-urChTxajYKa?id=9028867555875774472&type=/movie/detail&lang=en",
+        thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg",
+        tagline: "Welcome to Nevermore Academy."
+      },
+      {
+        title: "IT: Welcome to Derry",
+        link: "https://lok-lok.cc/spa/videoPlayPage/movies/it-welcome-to-derry-UeZadKkYol4?id=3646928918696838480&type=/movie/detail&lang=en",
+        thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg",
+        tagline: "Return to the town where nightmares live."
+      },
+      {
+        title: "Youngings",
+        link: "https://lok-lok.cc/spa/videoPlayPage/movies/youngins-qPxHkRMGbB6?id=5539220821668940352&type=/movie/detail&lang=en",
+        thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/27/626e257b7fa23a1c7964301bf1797dcd.jpg?x-oss-process=image/resize%2Cw_250",
+        tagline: "Drama, youth, and chaos."
+      }
+    ],
+
+    // === EXISTING CATEGORIES (your data) ===
     series: [
       { title: "Stranger Things", link: "https://lok-lok.cc/spa/videoPlayPage/movies/stranger-things-wsymkZvcaU5?id=4956801153355891744&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/91/17/75/9117751636528b25a7b4687cab63572d.jpg" },
       { title: "Wednesday", link: "https://lok-lok.cc/spa/videoPlayPage/movies/wednesday-urChTxajYKa?id=9028867555875774472&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
@@ -24,8 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Gen V S2  EP5 ", link: "https://ww1.goojara.to/eGQPmN", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
       { title: "Gen V S2  EP6 ", link: "https://ww1.goojara.to/egEOgy", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
       { title: "Gen V S2  EP7 ", link: "https://ww1.goojara.to/eyPAgR", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
-      { title: "Gen V S2  EP8 ", link: "https://ww1.goojara.to/eabrA0", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" }    
-   ],
+      { title: "Gen V S2  EP8 ", link: "https://ww1.goojara.to/eabrA0", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" }
+    ],
+
     sciFiAction: [
       { title: "Madame Web", link: "https://ww1.goojara.to/mLRzxj", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
       { title: "Ghostbusters: Afterlife", link: "https://ww1.goojara.to/mPLbxB", thumbnail: "https://i.pinimg.com/736x/e3/da/95/e3da9593b2c029f9cf980a474cebcf80.jpg" },
@@ -36,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "The Conjuring: Last Rites (2025)", link: "https://ww1.goojara.to/m1eZL5", thumbnail: "https://i.pinimg.com/1200x/76/3b/7d/763b7de1e68b213723bf35b30b3d54d6.jpg" },
       { title: "Playdate", link: "https://ww1.goojara.to/mLRq8w", thumbnail: "https://i.pinimg.com/736x/1f/88/32/1f8832bccdce3ac212ee33514d80c34a.jpg" }
     ],
+
     familyAnimation: [
       { title: "The Simpsons", link: "https://lok-lok.cc/spa/videoPlayPage/movies/the-simpsons-2nXz41q46j9?id=7812224542075936776&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/01/ca6f06ed12e14e8e77cb0ac797d92870.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Zootopia", link: "https://lok-lok.cc/spa/videoPlayPage/movies/zootopia-SxDV9XZ5kg6?id=5256777509147918584&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/1200x/93/0e/bd/930ebdcbe7dda50d57f4fa109ca7bb4c.jpg" },
@@ -45,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Sneaks", link: "https://ww1.goojara.to/m06AVr", thumbnail: "https://i.pinimg.com/1200x/d3/6c/83/d36c83753580f8849bc01fae7f28f131.jpg" },
       { title: "Elio", link: "https://ww1.goojara.to/mzERGj", thumbnail: "https://i.pinimg.com/736x/03/35/08/033508397c8971ca22f046b901265afe.jpg" }
     ],
+
     dramaBlockbusters: [
       { title: "Youngings", link: "https://lok-lok.cc/spa/videoPlayPage/movies/youngins-qPxHkRMGbB6?id=5539220821668940352&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/27/626e257b7fa23a1c7964301bf1797dcd.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "The Furioza", link: "https://ww1.goojara.to/mZDbbr", thumbnail: "https://i.pinimg.com/1200x/b1/5b/a4/b15ba4514a2058c48bbd8eec6060d666.jpg" },
@@ -55,14 +86,30 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "The Roses", link: "https://ww1.goojara.to/mwORVx", thumbnail: "https://i.pinimg.com/1200x/19/e8/36/19e8363c5aef0f985ad3eed5bcbfa983.jpg" },
       { title: "The Long Walk", link: "https://ww1.goojara.to/mGQVwR", thumbnail: "https://i.pinimg.com/1200x/8b/3a/c4/8b3ac47302c567b3e2dc1909adb57897.jpg" },
       { title: "The Smashing Machine", link: "https://ww1.goojara.to/myPGEw", thumbnail: "https://i.pinimg.com/736x/46/d9/44/46d944b7f3cf9b68b9a204a0c7c15821.jpg" }
+    ],
+
+    // === NEW ANIME CATEGORY ===
+    anime: [
+      // you can replace links later with LokLok/Goojara ones you like
+      { title: "Demon Slayer", link: "#", thumbnail: "https://i.pinimg.com/736x/bf/64/0f/bf640f94af0d32766952f4fb1517972f.jpg" },
+      { title: "Jujutsu Kaisen", link: "#", thumbnail: "https://i.pinimg.com/736x/fe/93/1d/fe931df4dd92ff3e41e711c7f471a1f0.jpg" },
+      { title: "Attack on Titan", link: "#", thumbnail: "https://i.pinimg.com/736x/9f/28/7d/9f287d2cf987f7af5120a0610b4bea41.jpg" }
+    ],
+
+    // === NEW HORROR CATEGORY ===
+    horror: [
+      { title: "The Conjuring", link: "#", thumbnail: "https://i.pinimg.com/736x/2f/c9/61/2fc961e3305cf7c1d7fb17a0cb26a2b8.jpg" },
+      { title: "Annabelle: Creation", link: "#", thumbnail: "https://i.pinimg.com/736x/8d/ba/ac/8dbaac8c0f2c42059d824c7c1a90eb52.jpg" },
+      { title: "Insidious", link: "#", thumbnail: "https://i.pinimg.com/736x/b1/27/6c/b1276cfd2fefd4dc2621c99ceb8590bc.jpg" }
     ]
   };
 
+  // === CARD CREATOR ===
   function createPosterCard(movie) {
     const a = document.createElement("a");
     a.className = "poster-card";
-    a.href = movie.link;
-    a.target = "_blank";
+    a.href = movie.link || "#";
+    if (movie.link && movie.link !== "#") a.target = "_blank";
 
     const img = document.createElement("img");
     img.src = movie.thumbnail;
@@ -76,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return a;
   }
 
+  // === RENDER ROWS ===
   function renderRow(rowId, movieList) {
     const rowDiv = document.getElementById(rowId);
     if (!rowDiv) return;
@@ -87,8 +135,53 @@ document.addEventListener("DOMContentLoaded", () => {
   renderRow("scifi-row", movies.sciFiAction);
   renderRow("family-row", movies.familyAnimation);
   renderRow("drama-row", movies.dramaBlockbusters);
+  renderRow("anime-row", movies.anime);
+  renderRow("horror-row", movies.horror);
 
-  // Scroll buttons
+  // === FEATURED SLIDER LOGIC ===
+  const featuredImage = document.getElementById("featured-image");
+  const featuredTitle = document.getElementById("featured-title");
+  const featuredTagline = document.getElementById("featured-tagline");
+  const featuredLink = document.getElementById("featured-link");
+
+  let featuredIndex = 0;
+
+  function showFeatured(index) {
+    const list = movies.featuredMovies;
+    if (!list || list.length === 0) return;
+
+    const movie = list[index];
+    featuredImage.src = movie.thumbnail;
+    featuredTitle.textContent = movie.title;
+    featuredTagline.textContent = movie.tagline || "";
+    featuredLink.href = movie.link || "#";
+  }
+
+  const prevBtn = document.querySelector(".featured-btn.prev");
+  const nextBtn = document.querySelector(".featured-btn.next");
+
+  if (prevBtn && nextBtn && featuredImage && featuredTitle && featuredLink) {
+    prevBtn.addEventListener("click", () => {
+      featuredIndex = (featuredIndex - 1 + movies.featuredMovies.length) % movies.featuredMovies.length;
+      showFeatured(featuredIndex);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      featuredIndex = (featuredIndex + 1) % movies.featuredMovies.length;
+      showFeatured(featuredIndex);
+    });
+
+    // Initial featured
+    showFeatured(featuredIndex);
+
+    // Auto slide every 5 seconds
+    setInterval(() => {
+      featuredIndex = (featuredIndex + 1) % movies.featuredMovies.length;
+      showFeatured(featuredIndex);
+    }, 5000);
+  }
+
+  // === ROW SCROLL BUTTONS ===
   document.querySelectorAll(".scroll-container").forEach(container => {
     const row = container.querySelector(".row-posters");
     const leftBtn = container.querySelector(".scroll-btn.left");
@@ -102,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Search functionality
+  // === SEARCH FUNCTIONALITY ===
   const searchInput = document.getElementById("movie-search");
   if (searchInput) {
     searchInput.addEventListener("input", () => {
@@ -121,17 +214,8 @@ document.addEventListener("DOMContentLoaded", () => {
       filterRow("scifi-row", movies.sciFiAction);
       filterRow("family-row", movies.familyAnimation);
       filterRow("drama-row", movies.dramaBlockbusters);
+      filterRow("anime-row", movies.anime);
+      filterRow("horror-row", movies.horror);
     });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
