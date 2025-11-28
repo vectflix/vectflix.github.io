@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Wednesday", link: "https://lok-lok.cc/spa/videoPlayPage/movies/wednesday-urChTxajYKa?id=9028867555875774472&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
       { title: "The Boys", link: "https://lok-lok.cc/spa/videoPlayPage/movies/the-boys-c8bx84KzD76?id=5139196938264400928&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/6c/90/55/6c9055aa5f8637337c2f7fc7c9fb801b.jpg" },
       { title: "Bel-Air", link: "https://lok-lok.cc/spa/videoPlayPage/movies/bel-air-yHFEhjS0vc1?id=1008516032576771104&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/48/4f/51/484f51296cb03d7fd050703bca32d9f0.jpg" },
+      { title: "Alice in Borderland", link: "https://lok-lok.cc/spa/videoPlayPage/movies/alice-in-borderland-english-sYRtPqGXH7?id=104358415815821952&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/06/15/a092c255c26383d5d2b78ba01a56cc46.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "KAOS", link: "https://lok-lok.cc/spa/videoPlayPage/movies/kaos-m1Fw1XtK7E8?id=7257570465089473256&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg" },
       { title: "IT: Welcome to Derry", link: "https://lok-lok.cc/spa/videoPlayPage/movies/it-welcome-to-derry-UeZadKkYol4?id=3646928918696838480&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
       { title: "Gen V S1  EP1 ", link: "https://ww1.goojara.to/eab8jW", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Playdate", link: "https://ww1.goojara.to/mLRq8w", thumbnail: "https://i.pinimg.com/736x/1f/88/32/1f8832bccdce3ac212ee33514d80c34a.jpg" }
     ],
     familyAnimation: [
+      { title: "The Simpsons", link: "https://lok-lok.cc/spa/videoPlayPage/movies/the-simpsons-2nXz41q46j9?id=7812224542075936776&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/01/ca6f06ed12e14e8e77cb0ac797d92870.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Zootopia", link: "https://lok-lok.cc/spa/videoPlayPage/movies/zootopia-SxDV9XZ5kg6?id=5256777509147918584&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/1200x/93/0e/bd/930ebdcbe7dda50d57f4fa109ca7bb4c.jpg" },
       { title: "Bad Guys 2", link: "https://ww1.goojara.to/mZDwVe", thumbnail: "https://i.pinimg.com/736x/f4/3d/33/f43d33f2ab89e2fc0901230fdd319a9a.jpg" },
       { title: "KPop Demon Hunters", link: "https://ww1.goojara.to/m5Qv6R", thumbnail: "https://i.pinimg.com/1200x/4b/86/e1/4b86e18b0a43210ff79558f3ed211b62.jpg" },
@@ -122,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
 
 
