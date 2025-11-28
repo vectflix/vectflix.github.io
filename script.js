@@ -62,14 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "The Matrix", link: "https://ww1.goojara.to/m30Xp3", thumbnail: "https://i.pinimg.com/736x/ed/45/16/ed4516338fa5df348c13a2a7ce1e7998.jpg" },
       { title: "Nobody", link: "https://ww1.goojara.to/mqG4E8", thumbnail: "https://i.pinimg.com/736x/b4/5a/bc/b45abcbfcdd23c32abfcbfed131f0bb5.jpg" },
       { title: "Nobody 2", link: "https://ww1.goojara.to/mLRqww", thumbnail: "https://i.pinimg.com/1200x/78/03/eb/7803eb0afc71d821b4c768f32bb01caf.jpg" },
-      { title: "The Conjuring: Last Rites (2025)", link: "https://ww1.goojara.to/m1eZL5", thumbnail: "https://i.pinimg.com/1200x/76/3b/7d/763b7de1e68b213723bf35b30b3d54d6.jpg" },
       { title: "Playdate", link: "https://ww1.goojara.to/mLRq8w", thumbnail: "https://i.pinimg.com/736x/1f/88/32/1f8832bccdce3ac212ee33514d80c34a.jpg" }
     ],
 
     familyAnimation: [
+      { title: "Zootopia 2 [CAM]", link: "https://lok-lok.cc/spa/videoPlayPage/movies/zootopia-2-cam-2DvGllr8x09?id=7560929242381797904&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/17/e1b76382b904b6ffa6f56c77c33bd4db.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "The Simpsons", link: "https://lok-lok.cc/spa/videoPlayPage/movies/the-simpsons-2nXz41q46j9?id=7812224542075936776&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/01/ca6f06ed12e14e8e77cb0ac797d92870.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Zootopia", link: "https://lok-lok.cc/spa/videoPlayPage/movies/zootopia-SxDV9XZ5kg6?id=5256777509147918584&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/1200x/93/0e/bd/930ebdcbe7dda50d57f4fa109ca7bb4c.jpg" },
       { title: "Bad Guys 2", link: "https://ww1.goojara.to/mZDwVe", thumbnail: "https://i.pinimg.com/736x/f4/3d/33/f43d33f2ab89e2fc0901230fdd319a9a.jpg" },
+      { title: "Arcane", link: "https://lok-lok.cc/spa/videoPlayPage/movies/arcane-cSoWT6jiQW9?id=8350263472579564576&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/01/e542874dd07703b4e41e047be0823103.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "KPop Demon Hunters", link: "https://ww1.goojara.to/m5Qv6R", thumbnail: "https://i.pinimg.com/1200x/4b/86/e1/4b86e18b0a43210ff79558f3ed211b62.jpg" },
       { title: "The Twits", link: "https://ww1.goojara.to/mRzeXn", thumbnail: "https://i.pinimg.com/736x/76/0e/a6/760ea62964806342dc5499a65b361950.jpg" },
       { title: "Sneaks", link: "https://ww1.goojara.to/m06AVr", thumbnail: "https://i.pinimg.com/1200x/d3/6c/83/d36c83753580f8849bc01fae7f28f131.jpg" },
@@ -91,16 +92,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // === NEW ANIME CATEGORY ===
     anime: [
       // you can replace links later with LokLok/Goojara ones you like
-      { title: "Demon Slayer", link: "#", thumbnail: "https://i.pinimg.com/736x/bf/64/0f/bf640f94af0d32766952f4fb1517972f.jpg" },
-      { title: "Jujutsu Kaisen", link: "#", thumbnail: "https://i.pinimg.com/736x/fe/93/1d/fe931df4dd92ff3e41e711c7f471a1f0.jpg" },
-      { title: "Attack on Titan", link: "#", thumbnail: "https://i.pinimg.com/736x/9f/28/7d/9f287d2cf987f7af5120a0610b4bea41.jpg" }
+      { title: "Demon Slayer", link: "https://lok-lok.cc/spa/videoPlayPage/movies/demon-slayer-kimetsu-no-yaiba-OpOlWPwnoj4?id=3619725132714887968&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/b1cbb3983672bf46c8cfe2063b1ae3ec.jpg?x-oss-process=image/resize%2Cw_250" },
+      { title: "Jujutsu Kaisen", link: "https://lok-lok.cc/spa/videoPlayPage/movies/jujutsu-kaisen-gCBS4ln5U9?id=134079758618484744&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/01/0e87961ac4b81616b286fa0602aa510a.jpg?x-oss-process=image/resize%2Cw_250" },
+      { title: "Attack on Titan", link: "https://lok-lok.cc/spa/videoPlayPage/movies/attack-on-titan-c0p85b63Xl2?id=1975770531236301600&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/02/b472955da0dd61067433dc62ad569e11.jpg?x-oss-process=image/resize%2Cw_250" }
     ],
 
     // === NEW HORROR CATEGORY ===
     horror: [
-      { title: "The Conjuring", link: "#", thumbnail: "https://i.pinimg.com/736x/2f/c9/61/2fc961e3305cf7c1d7fb17a0cb26a2b8.jpg" },
-      { title: "Annabelle: Creation", link: "#", thumbnail: "https://i.pinimg.com/736x/8d/ba/ac/8dbaac8c0f2c42059d824c7c1a90eb52.jpg" },
-      { title: "Insidious", link: "#", thumbnail: "https://i.pinimg.com/736x/b1/27/6c/b1276cfd2fefd4dc2621c99ceb8590bc.jpg" }
+      { title: "The Conjuring: Last Rites", link: "https://lok-lok.cc/spa/videoPlayPage/movies/the-conjuring-last-rites-o4iwG7hNbi3?id=2764140928360139480&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/25/3bbc0ee2462b1881d2c46572e37ec673.jpg?x-oss-process=image/resize%2Cw_250" },
+      { title: "Annabelle: Creation", link: "https://lok-lok.cc/spa/videoPlayPage/movies/annabelle-creation-2LvZbMuuzW2?id=2471499051712267304&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/7dc7ac624417d51130c4ca01bcfb5f13.jpg?x-oss-process=image/resize%2Cw_250" },
+      { title: "Insidious", link: "https://lok-lok.cc/spa/videoPlayPage/movies/insidious-UUcq5ouOWm?id=310657436946415864&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/02/850260bb5450683160995f49528d1d3c.jpg?x-oss-process=image/resize%2Cw_250" }
     ]
   };
 
@@ -219,3 +220,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
