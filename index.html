@@ -3,114 +3,877 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vectflix</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>VectFlix</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-main: #020617;
+      --bg-elevated: #020617;
+      --accent: #e50914;
+      --accent-soft: rgba(229, 9, 20, 0.4);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.25);
+      --chip-bg: rgba(15, 23, 42, 0.9);
+      --scroll-btn-bg: rgba(15, 23, 42, 0.85);
+      --scroll-btn-border: rgba(148, 163, 184, 0.5);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --glass: rgba(15, 23, 42, 0.92);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    /* ===== TOP NAVBAR ===== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(24px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.65), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 16px 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #f97316, #e11d48, #4f46e5);
+      position: relative;
+      box-shadow:
+        0 0 20px rgba(248, 113, 113, 0.45),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .logo-badge span {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-main {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .nav-spacer {
+      flex: 1;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 16px 40px;
+    }
+
+    /* ===== HERO / FEATURED ===== */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .featured {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, #1e293b, #020617 70%);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow:
+        0 22px 70px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      min-height: 260px;
+    }
+
+    .featured-media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .featured-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.5), transparent 45%);
+      mix-blend-mode: screen;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .featured-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+      filter: saturate(1.2) contrast(1.05);
+    }
+
+    .featured-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(248, 250, 252, 0.06), transparent 48%),
+        linear-gradient(to top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.1));
+    }
+
+    .featured-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 18px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .featured-chip-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .chip-accent {
+      border-color: rgba(239, 68, 68, 0.8);
+      background: radial-gradient(circle at 0 0, rgba(248, 113, 113, 0.9), rgba(30, 64, 175, 0.9));
+      color: #f9fafb;
+      box-shadow: 0 0 30px rgba(248, 113, 113, 0.4);
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #f97316;
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.9);
+    }
+
+    .featured-title {
+      font-size: 26px;
+      font-weight: 700;
+      text-shadow: 0 15px 40px rgba(15, 23, 42, 0.95);
+      letter-spacing: 0.04em;
+    }
+
+    .featured-tagline {
+      color: #e5e7eb;
+      font-size: 14px;
+      max-width: 420px;
+      text-shadow: 0 14px 30px rgba(15, 23, 42, 0.95);
+    }
+
+    .featured-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .meta-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .featured-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      background: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 1),
+        0 0 24px rgba(248, 113, 113, 0.5);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow:
+        0 22px 55px rgba(15, 23, 42, 1),
+        0 0 32px rgba(248, 113, 113, 0.65);
+    }
+
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+    }
+
+    .featured-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      pointer-events: none;
+    }
+
+    .featured-btn {
+      pointer-events: auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: #e5e7eb;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
+      transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .featured-btn:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+    }
+
+    /* ===== SIDEBAR PANEL ===== */
+    .side-panel {
+      border-radius: 22px;
+      padding: 14px 14px 13px;
+      background: radial-gradient(circle at top right, rgba(129, 140, 248, 0.35), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow:
+        0 20px 60px rgba(15, 23, 42, 1),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .side-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .side-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .side-title {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .side-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 8px 11px 8px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.94);
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .side-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding-top: 2px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .section-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .section-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* ===== ROWS & POSTERS ===== */
+    .scroll-container {
+      position: relative;
+    }
+
+    .row-posters {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 6px;
+      scrollbar-width: thin;
+      scroll-behavior: smooth;
+    }
+
+    .row-posters::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .row-posters::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .row-posters::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.5);
+      border-radius: 999px;
+    }
+
+    .poster-card {
+      flex: 0 0 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-main);
+      border-radius: 18px;
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.97), #020617);
+      border: 1px solid var(--card-border);
+      padding: 5px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      transition:
+        transform 0.14s ease,
+        box-shadow 0.14s ease,
+        border-color 0.14s ease,
+        background 0.14s ease;
+    }
+
+    .poster-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.24), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.4), transparent 52%);
+      opacity: 0;
+      mix-blend-mode: screen;
+      transition: opacity 0.16s ease;
+      pointer-events: none;
+    }
+
+    .poster-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 22px 55px rgba(15, 23, 42, 1),
+        0 0 18px rgba(148, 163, 184, 0.4);
+      border-color: rgba(248, 250, 252, 0.5);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 1), #020617);
+    }
+
+    .poster-card:hover::before {
+      opacity: 0.9;
+    }
+
+    .poster-card img {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .poster-title {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin: 0 1px 1px;
+    }
+
+    .poster-chip {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Smol category-specific chips */
+    .chip-series { content: "Series"; }
+    .chip-anime { content: "Anime"; }
+    .chip-horror { content: "Horror"; }
+
+    /* We will set actual text with ::after on category wrappers if needed */
+
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid var(--scroll-btn-border);
+      background: var(--scroll-btn-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: #e5e7eb;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.95);
+      transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .scroll-btn.left {
+      left: -6px;
+    }
+
+    .scroll-btn.right {
+      right: -6px;
+    }
+
+    .scroll-btn:hover {
+      background: #020617;
+      transform: translateY(-50%) translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding-inline: 10px;
+      }
+      .featured {
+        border-radius: 22px;
+      }
+      .scroll-btn.left {
+        left: 0;
+      }
+      .scroll-btn.right {
+        right: 0;
+      }
+      .poster-card {
+        flex: 0 0 110px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <nav class="navbar">
-      <div class="logo">Vectflix</div>
-      <button class="sign-in-btn">Sign In</button>
-    </nav>
-
-    <div class="hero-content">
-      <div class="featured-wrapper">
-        <button class="featured-btn prev">&lt;</button>
-
-        <a id="featured-link" class="featured-card" href="#" target="_blank">
-          <img id="featured-image" src="" alt="Featured" />
-          <div class="featured-info">
-            <h1 id="featured-title">Featured Title</h1>
-            <p id="featured-tagline">Featured tagline goes here.</p>
-          </div>
-        </a>
-
-        <button class="featured-btn next">&gt;</button>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="logo-badge">
+        <span>V</span>
+      </div>
+      <div class="logo-text">
+        <div class="logo-main">VECTFLIX</div>
+        <div class="logo-sub">CURATED STREAM LINKS</div>
       </div>
 
-      <p class="hero-text">
-        Unlimited movies, series and more. Watch anywhere. Cancel anytime.
-      </p>
+      <div class="nav-spacer"></div>
 
-      <form class="email-form">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Get Started</button>
-      </form>
+      <div class="pill">
+        <span class="pill-dot"></span>
+        <span>Fresh Drops</span>
+      </div>
     </div>
   </header>
 
-  <!-- Search bar -->
-  <div class="search-container">
-    <input type="text" id="movie-search" placeholder="Search movies...">
-  </div>
+  <main class="page">
+    <!-- HERO GRID -->
+    <section class="hero-grid">
+      <!-- Featured Slider -->
+      <article class="featured">
+        <div class="featured-media">
+          <img id="featured-image" src="" alt="Featured" />
+        </div>
+        <div class="featured-gradient"></div>
 
-  <main>
-    <!-- Series row -->
-    <section class="row">
-      <h3>Series</h3>
+        <div class="featured-content">
+          <div class="featured-chip-row">
+            <div class="chip chip-accent">
+              <span class="chip-dot"></span>
+              <span>Spotlight</span>
+            </div>
+            <div class="chip">
+              <span>Tonight’s Picks</span>
+            </div>
+          </div>
+
+          <h1 id="featured-title" class="featured-title">Loading…</h1>
+          <p id="featured-tagline" class="featured-tagline"></p>
+
+          <div class="featured-meta">
+            <div class="meta-pill">Trending now</div>
+            <span>•</span>
+            <div class="meta-pill">From LokLok & Goojara</div>
+          </div>
+
+          <div class="featured-actions">
+            <a id="featured-link" href="#" target="_blank" class="primary-btn">
+              <span>Open Link</span>
+            </a>
+            <button type="button" class="secondary-btn">
+              <span>Shuffle Spotlight</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="featured-nav">
+          <button class="featured-btn prev" type="button">‹</button>
+          <button class="featured-btn next" type="button">›</button>
+        </div>
+      </article>
+
+      <!-- Side Panel -->
+      <aside class="side-panel">
+        <div class="side-header">
+          <div class="side-title-wrap">
+            <div class="side-title">Browse Library</div>
+            <div class="side-subtitle">Search across series, anime, films & more.</div>
+          </div>
+          <div class="tag">Instant links</div>
+        </div>
+
+        <div class="search-box">
+          <span class="search-icon">⌕</span>
+          <input
+            type="text"
+            id="movie-search"
+            class="search-input"
+            placeholder="Search by title…"
+          />
+        </div>
+
+        <div class="side-footer">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span class="status-dot"></span>
+            <span>Up to date</span>
+          </div>
+          <span>Vectflix · private use</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ROW: SERIES -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-left">
+          <h2 class="section-title">Series & Episodic</h2>
+          <p class="section-subtitle">Long-form shows & seasons you can binge.</p>
+        </div>
+        <div class="section-right">
+          <span>Section 01</span>
+        </div>
+      </div>
+
       <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="series-row"></div>
-        <button class="scroll-btn right">&gt;</button>
+        <button type="button" class="scroll-btn left">‹</button>
+        <div id="series-row" class="row-posters"></div>
+        <button type="button" class="scroll-btn right">›</button>
       </div>
     </section>
 
-    <!-- Sci-Fi & Action row -->
-    <section class="row">
-      <h3>Sci-Fi &amp; Action</h3>
+    <!-- ROW: SCI-FI/ACTION -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-left">
+          <h2 class="section-title">Sci-Fi & Action</h2>
+          <p class="section-subtitle">Explosions, chase scenes and reality-breaking plots.</p>
+        </div>
+        <div class="section-right">
+          <span>Section 02</span>
+        </div>
+      </div>
+
       <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="scifi-row"></div>
-        <button class="scroll-btn right">&gt;</button>
+        <button type="button" class="scroll-btn left">‹</button>
+        <div id="scifi-row" class="row-posters"></div>
+        <button type="button" class="scroll-btn right">›</button>
       </div>
     </section>
 
-    <!-- Family & Animation row -->
-    <section class="row">
-      <h3>Family &amp; Animation</h3>
+    <!-- ROW: FAMILY / ANIMATION -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-left">
+          <h2 class="section-title">Family & Animation</h2>
+          <p class="section-subtitle">Comfort movies, cartoon chaos and cozy vibes.</p>
+        </div>
+        <div class="section-right">
+          <span>Section 03</span>
+        </div>
+      </div>
+
       <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="family-row"></div>
-        <button class="scroll-btn right">&gt;</button>
+        <button type="button" class="scroll-btn left">‹</button>
+        <div id="family-row" class="row-posters"></div>
+        <button type="button" class="scroll-btn right">›</button>
       </div>
     </section>
 
-    <!-- Drama & Blockbusters row -->
-    <section class="row">
-      <h3>Drama &amp; Blockbusters</h3>
+    <!-- ROW: DRAMA / BLOCKBUSTERS -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-left">
+          <h2 class="section-title">Drama & Blockbusters</h2>
+          <p class="section-subtitle">Heavy stories, big emotions and cinema moments.</p>
+        </div>
+        <div class="section-right">
+          <span>Section 04</span>
+        </div>
+      </div>
+
       <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="drama-row"></div>
-        <button class="scroll-btn right">&gt;</button>
+        <button type="button" class="scroll-btn left">‹</button>
+        <div id="drama-row" class="row-posters"></div>
+        <button type="button" class="scroll-btn right">›</button>
       </div>
     </section>
 
-    <!-- Anime row -->
-    <section class="row">
-      <h3>Anime</h3>
+    <!-- ROW: ANIME -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-left">
+          <h2 class="section-title">Anime Corner</h2>
+          <p class="section-subtitle">Shonen fights, titans, curses & more.</p>
+        </div>
+        <div class="section-right">
+          <span>Section 05</span>
+        </div>
+      </div>
+
       <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="anime-row"></div>
-        <button class="scroll-btn right">&gt;</button>
+        <button type="button" class="scroll-btn left">‹</button>
+        <div id="anime-row" class="row-posters"></div>
+        <button type="button" class="scroll-btn right">›</button>
       </div>
     </section>
 
-    <!-- Horror row -->
-    <section class="row">
-      <h3>Horror</h3>
+    <!-- ROW: HORROR -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-left">
+          <h2 class="section-title">Horror Zone</h2>
+          <p class="section-subtitle">Possessions, hauntings and things in the dark.</p>
+        </div>
+        <div class="section-right">
+          <span>Section 06</span>
+        </div>
+      </div>
+
       <div class="scroll-container">
-        <button class="scroll-btn left">&lt;</button>
-        <div class="row-posters" id="horror-row"></div>
-        <button class="scroll-btn right">&gt;</button>
+        <button type="button" class="scroll-btn left">‹</button>
+        <div id="horror-row" class="row-posters"></div>
+        <button type="button" class="scroll-btn right">›</button>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Vectflix | <a href="https://Instagram.com/vecteezy_1" target="_blank">Instagram</a></p>
-  </footer>
-
+  <!-- Your JS file -->
   <script src="script.js"></script>
 </body>
 </html>
-
