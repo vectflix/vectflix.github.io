@@ -33,10 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Stranger Things", link: "https://lok-lok.cc/spa/videoPlayPage/movies/stranger-things-wsymkZvcaU5?id=4956801153355891744&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/91/17/75/9117751636528b25a7b4687cab63572d.jpg" },
       { title: "Wednesday", link: "https://lok-lok.cc/spa/videoPlayPage/movies/wednesday-urChTxajYKa?id=9028867555875774472&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/01/ab/88/01ab8894c1bf33f4a0bb87b41c9d0839.jpg" },
       { title: "The Boys", link: "https://lok-lok.cc/spa/videoPlayPage/movies/the-boys-c8bx84KzD76?id=5139196938264400928&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/6c/90/55/6c9055aa5f8637337c2f7fc7c9fb801b.jpg" },
+      { title: "Money Heist", link: "https://lok-lok.cc/spa/videoPlayPage/movies/money-heist-8UcoFG3Uog?id=222030967182086936&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/37b9f134ed06b00a00adea4bc63bbbfd.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Bel-Air", link: "https://lok-lok.cc/spa/videoPlayPage/movies/bel-air-yHFEhjS0vc1?id=1008516032576771104&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/48/4f/51/484f51296cb03d7fd050703bca32d9f0.jpg" },
       { title: "Alice in Borderland", link: "https://lok-lok.cc/spa/videoPlayPage/movies/alice-in-borderland-english-sYRtPqGXH7?id=104358415815821952&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/06/15/a092c255c26383d5d2b78ba01a56cc46.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "KAOS", link: "https://lok-lok.cc/spa/videoPlayPage/movies/kaos-m1Fw1XtK7E8?id=7257570465089473256&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/1200x/a4/72/d7/a472d7383d33d82ed7aaf14438ed38b2.jpg" },
       { title: "IT: Welcome to Derry", link: "https://lok-lok.cc/spa/videoPlayPage/movies/it-welcome-to-derry-UeZadKkYol4?id=3646928918696838480&type=/movie/detail&lang=en", thumbnail: "https://i.pinimg.com/736x/f9/6d/b7/f96db71c6ddb86bb62697a5366228119.jpg" },
+      { title: "Dark", link: "https://lok-lok.cc/spa/videoPlayPage/movies/dark-english-UG1YreRp7K5?id=4820822255225686840&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/e617d431f604d5f223f1b54ed4b9a44f.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Gen V S1  EP1 ", link: "https://ww1.goojara.to/eab8jW", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
       { title: "Gen V S1  EP2 ", link: "https://ww1.goojara.to/eOeDQy", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
       { title: "Gen V S1  EP3 ", link: "https://ww1.goojara.to/ellLdM", thumbnail: "https://i.pinimg.com/736x/9c/b1/43/9cb143eedc1f5a407b2d3c58569c3396.jpg" },
@@ -56,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
 
     sciFiAction: [
+      { title: "Tron: Ares", link: "https://lok-lok.cc/spa/videoPlayPage/movies/tron-ares-GHLb7mZMfw8?id=7151029320587559144&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/cde254d94a9b6f4669778fbe409e60a5.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Madame Web", link: "https://ww1.goojara.to/mLRzxj", thumbnail: "https://i.pinimg.com/736x/4c/26/7a/4c267a6e7a1dee8aa9e3038c52b0fc7f.jpg" },
       { title: "Ghostbusters: Afterlife", link: "https://ww1.goojara.to/mPLbxB", thumbnail: "https://i.pinimg.com/736x/e3/da/95/e3da9593b2c029f9cf980a474cebcf80.jpg" },
       { title: "Frankenstein (2025)", link: "https://ww1.goojara.to/mJRNdD", thumbnail: "https://i.pinimg.com/1200x/d6/09/1a/d6091a76cf4995d5a9d49db700fc73a0.jpg" },
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
 
     dramaBlockbusters: [
+      { title: "Lupin", link: "https://lok-lok.cc/spa/videoPlayPage/movies/lupin-2rBwMMWNWZ?id=838601903666779168&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/02/12cab7220a165e98483b672054bdbc5e.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Youngings", link: "https://lok-lok.cc/spa/videoPlayPage/movies/youngins-qPxHkRMGbB6?id=5539220821668940352&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/27/626e257b7fa23a1c7964301bf1797dcd.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "The Furioza", link: "https://ww1.goojara.to/mZDbbr", thumbnail: "https://i.pinimg.com/1200x/b1/5b/a4/b15ba4514a2058c48bbd8eec6060d666.jpg" },
       { title: "Roofman 2025", link: "https://ww1.goojara.to/mrARxA", thumbnail: "https://i.pinimg.com/736x/03/80/b2/0380b2319ded86900ce14fd5c3e81364.jpg" },
@@ -92,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // === NEW ANIME CATEGORY ===
     anime: [
       // you can replace links later with LokLok/Goojara ones you like
+      { title: "Ne Zha 2", link: "https://lok-lok.cc/spa/videoPlayPage/movies/ne-zha-2-i3lDBxeIXI6?id=5644465846509601432&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/261d09f157dd6dcf27442c76dc3bb183-s.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Demon Slayer", link: "https://lok-lok.cc/spa/videoPlayPage/movies/demon-slayer-kimetsu-no-yaiba-OpOlWPwnoj4?id=3619725132714887968&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/03/b1cbb3983672bf46c8cfe2063b1ae3ec.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Jujutsu Kaisen", link: "https://lok-lok.cc/spa/videoPlayPage/movies/jujutsu-kaisen-gCBS4ln5U9?id=134079758618484744&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/01/0e87961ac4b81616b286fa0602aa510a.jpg?x-oss-process=image/resize%2Cw_250" },
       { title: "Attack on Titan", link: "https://lok-lok.cc/spa/videoPlayPage/movies/attack-on-titan-c0p85b63Xl2?id=1975770531236301600&type=/movie/detail&lang=en", thumbnail: "https://pbcdnw.aoneroom.com/image/2025/11/02/b472955da0dd61067433dc62ad569e11.jpg?x-oss-process=image/resize%2Cw_250" }
@@ -220,4 +225,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 
