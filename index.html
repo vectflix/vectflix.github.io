@@ -3,117 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLITZ SQUAD | OFFICIAL STORE</title>
+    <title>BLITZ SQUAD | KENYA</title>
     <style>
-        /* BRAND THEME */
         body { 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
             margin: 0; 
-            background-color: #000; 
+            background: linear-gradient(180deg, #000000 0%, #00050a 50%, #001a33 100%);
+            background-attachment: fixed;
             color: #fff; 
             text-align: center; 
+            min-height: 100vh;
         }
         
         header { 
-            padding: 80px 20px; 
-            border-bottom: 1px solid #222; 
+            padding: 50px 20px; 
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 136, 255, 0.2);
+            margin-bottom: 40px;
         }
 
-        h1 { 
-            font-size: 3rem; 
-            letter-spacing: 12px; 
-            margin: 0; 
-            text-transform: uppercase; 
+        .brand-badge {
+            width: 130px; 
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid #0088ff;
+            box-shadow: 0 0 25px rgba(0, 136, 255, 0.5);
         }
 
-        .tagline { 
-            color: #666; 
-            letter-spacing: 3px; 
-            margin-top: 15px; 
-            text-transform: uppercase;
-            font-size: 0.8rem;
-        }
+        h1 { font-size: 2.2rem; letter-spacing: 10px; text-transform: uppercase; margin: 0; font-weight: 900; }
+        .tagline { color: #0088ff; letter-spacing: 4px; font-size: 0.7rem; text-transform: uppercase; margin-top: 10px; font-weight: bold;}
 
-        /* PRODUCT LAYOUT */
         .shop-container { 
             max-width: 1200px; 
-            margin: 40px auto; 
+            margin: 0 auto; 
             padding: 20px; 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 35px; 
         }
 
         .product-card { 
-            background: #050505; 
-            border: 1px solid #111; 
-            padding: 25px; 
-            transition: all 0.4s ease; 
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            padding: 20px; 
+            border-radius: 20px;
+            transition: 0.3s ease;
         }
 
-        .product-card:hover { 
-            border-color: #ffffff;
-            transform: translateY(-5px);
+        .product-card:hover {
+            border-color: #0088ff;
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
         }
 
-        .product-card img { 
+        .img-container {
+            width: 100%;
+            height: 380px; 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .img-container img { 
             width: 100%; 
-            height: auto; 
-            margin-bottom: 25px; 
+            height: 100%; 
+            object-fit: contain; 
         }
 
-        .product-card h3 { 
-            text-transform: uppercase; 
-            margin: 15px 0 5px; 
-            letter-spacing: 2px; 
-            font-size: 1.1rem;
-        }
-
-        .price { 
-            display: block; 
-            color: #888; 
-            margin-bottom: 25px; 
-            font-size: 1.1rem; 
-            font-weight: bold;
-        }
-
-        /* ORDER BUTTON */
+        h3 { font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; margin: 15px 0 5px; }
+        .price { display: block; color: #0088ff; margin-bottom: 20px; font-size: 1.3rem; font-weight: 900; }
+        
         .btn { 
             display: block; 
             background: #fff; 
             color: #000; 
-            padding: 15px; 
+            padding: 16px; 
             text-decoration: none; 
-            font-weight: bold; 
+            font-weight: 900; 
             text-transform: uppercase; 
             font-size: 0.8rem; 
-            letter-spacing: 1px;
+            border-radius: 8px;
         }
 
         .btn:hover { 
-            background: #cccccc; 
+            background: #0088ff; 
+            color: #fff;
         }
 
-        footer { 
-            padding: 80px 20px; 
-            color: #333; 
-            font-size: 0.7rem; 
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        footer { padding: 80px 20px; color: #333; font-size: 0.7rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
     <header>
+        <img src="badge.jpg" alt="Blitz Squad Badge" class="brand-badge">
         <h1>BLITZ SQUAD</h1>
-        <p class="tagline">Engineered for the Street</p>
+        <p class="tagline">Premium Kenyan Streetwear</p>
     </header>
 
     <div class="shop-container">
         
         <div class="product-card">
-            <img src="black-tee.jpg" alt="Black Blitz Tee">
+            <div class="img-container"><img src="ski-mask.jpg"></div>
+            <h3>2VSF Ski Mask</h3>
+            <span class="price">Ksh 1,200</span>
+            <a href="https://wa.me/2547XXXXXXXX?text=Order:%202VSF%20Ski%20Mask" class="btn">Order on WhatsApp</a>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container"><img src="black-tee.jpg"></div>
             <h3>Signature Tee / Black</h3>
-            <span class="price">$30.00</span>
-            <a
+            <span class="price">Ksh 1,500</span>
+            <a href="https://wa.me/2547XXXXXXXX?text=Order:%20Black%20Tee" class="btn">Order on WhatsApp</a>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container"><img src="white-tee.jpg"></div>
+            <h3>Signature Tee / White</h3>
+            <span class="price">Ksh
