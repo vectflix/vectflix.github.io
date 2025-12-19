@@ -3,208 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLITZ SQUAD | Official Streetwear</title>
+    <title>BLITZ SQUAD | OFFICIAL STORE</title>
     <style>
-        /* BRAND COLORS & FONTS */
-        :root {
-            --brand-black: #000000;
-            --brand-white: #ffffff;
-            --brand-gray: #f4f4f4;
-            --accent-gray: #666;
+        /* BRAND DESIGN */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            background-color: #000000; 
+            color: #ffffff; 
+        }
+        
+        header { 
+            padding: 60px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid #222; 
         }
 
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--brand-white);
-            color: var(--brand-black);
-            line-height: 1.6;
+        h1 { 
+            font-size: 3rem; 
+            letter-spacing: 10px; 
+            margin: 0; 
+            text-transform: uppercase; 
         }
 
-        /* NAVIGATION */
-        nav {
-            background: var(--brand-black);
-            color: var(--brand-white);
-            padding: 20px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        .tagline { 
+            color: #666; 
+            letter-spacing: 2px; 
+            margin-top: 10px; 
         }
 
-        nav h1 {
-            margin: 0;
-            letter-spacing: 8px;
-            font-size: 1.5rem;
-            text-transform: uppercase;
+        /* PRODUCT GRID */
+        .shop-container { 
+            max-width: 1100px; 
+            margin: 40px auto; 
+            padding: 20px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
         }
 
-        /* HERO SECTION */
-        .hero {
-            height: 400px;
-            background-color: var(--brand-black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--brand-white);
-            text-align: center;
-            flex-direction: column;
-            border-bottom: 5px solid #333;
+        .product-card { 
+            background: #0a0a0a; 
+            border: 1px solid #1a1a1a; 
+            padding: 20px; 
+            text-align: center; 
+            transition: 0.3s; 
         }
 
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
+        .product-card:hover { 
+            border-color: #fff; 
         }
 
-        /* SHOP SECTION */
-        .container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
+        .product-card img { 
+            width: 100%; 
+            height: auto; 
+            margin-bottom: 20px; 
+            filter: grayscale(20%); 
         }
 
-        .section-title {
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            font-size: 2rem;
+        .product-card h3 { 
+            text-transform: uppercase; 
+            margin: 10px 0; 
+            letter-spacing: 1px; 
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        /* PRODUCT CARD */
-        .product-card {
-            background: var(--brand-white);
-            border: 1px solid #eee;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .product-card h3 {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            text-transform: uppercase;
-        }
-
-        .product-card .price {
-            font-weight: bold;
-            color: var(--accent-gray);
-            margin-bottom: 20px;
+        .price { 
+            display: block; 
+            color: #888; 
+            margin-bottom: 20px; 
+            font-size: 1.2rem; 
         }
 
         /* BUTTONS */
-        .buy-button {
-            display: block;
-            background: var(--brand-black);
-            color: var(--brand-white);
-            padding: 12px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: background 0.2s;
+        .btn { 
+            display: inline-block; 
+            background: #fff; 
+            color: #000; 
+            padding: 12px 30px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
         }
 
-        .buy-button:hover {
-            background: #333;
+        .btn:hover { 
+            background: #ccc; 
         }
 
-        /* FOOTER */
-        footer {
-            background: var(--brand-gray);
-            padding: 40px;
-            text-align: center;
-            margin-top: 50px;
-            font-size: 0.9rem;
+        footer { 
+            padding: 50px; 
+            text-align: center; 
+            font-size: 0.8rem; 
+            color: #444; 
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <header>
         <h1>BLITZ SQUAD</h1>
-    </nav>
-
-    <header class="hero">
-        <h2>THE NEW DROP</h2>
-        <p>Premium Streetwear / Limited Quantity</p>
+        <p class="tagline">PREMIUM STREETWEAR COLLECTIONS</p>
     </header>
 
-    <div class="container">
-        <h2 class="section-title">Shop Collection</h2>
+    <div class="shop-container">
         
-        <div class="product-grid">
-            
-            <div class="product-card">
-                <img src="images/black-hoodie.jpg" alt="Black Blitz Squad Hoodie">
-                <h3>Bobblitz Hoodie (Black)</h3>
-                <p class="price">$55.00</p>
-                <a href="#" class="buy-button">View Details</a>
-            </div>
-
-            <div class="product-card">
-                <img src="images/white-hoodie.jpg" alt="White Blitz Squad Hoodie">
-                <h3>Blitz Squad Hoodie (White)</h3>
-                <p class="price">$55.00</p>
-                <a href="#" class="buy-button">View Details</a>
-            </div>
-
-            <div class="product-card">
-                <img src="images/black-tee.jpg" alt="Black Blitz Squad Tee">
-                <h3>Signature Tee (Black)</h3>
-                <p class="price">$30.00</p>
-                <a href="#" class="buy-button">View Details</a>
-            </div>
-
-            <div class="product-card">
-                <img src="images/white-tee.jpg" alt="White Blitz Squad Tee">
-                <h3>Signature Tee (White)</h3>
-                <p class="price">$30.00</p>
-                <a href="#" class="buy-button">View Details</a>
-            </div>
-
-            <div class="product-card">
-                <img src="images/black-joggers.jpg" alt="Black Blitz Squad Joggers">
-                <h3>Blitz Joggers (Black)</h3>
-                <p class="price">$45.00</p>
-                <a href="#" class="buy-button">View Details</a>
-            </div>
-
-            <div class="product-card">
-                <img src="images/white-joggers.jpg" alt="White Blitz Squad Joggers">
-                <h3>Blitz Joggers (White)</h3>
-                <p class="price">$45.00</p>
-                <a href="#" class="buy-button">View Details</a>
-            </div>
-
+        <div class="product-card">
+            <img src="images/black-tee.jpg" alt="Black Blitz Tee">
+            <h3>Signature Tee (Black)</h3>
+            <span class="price">$30.00</span>
+            <a href="#" class="btn">Order via WhatsApp</a>
         </div>
+
+        <div class="product-card">
+            <img src="images/white-tee.jpg" alt="White Blitz Tee">
+            <h3>Signature Tee (White)</h3>
+            <span class="price">$30.00</span>
+            <a href="#" class="btn">Order via WhatsApp</a>
+        </div>
+
+        <div class="product-card">
+            <img src="images/black-hoodie.jpg" alt="Black Blitz Hoodie">
+            <h3>Blitz Squad Hoodie</h3>
+            <span class="price">$55.00</span>
+            <a href="#" class="btn">Order via WhatsApp</a>
+        </div>
+
     </div>
 
     <footer>
-        <p>&copy; 2024 BLITZ SQUAD. All rights reserved.</p>
-        <p>Follow us for updates.</p>
+        &copy; 2025 BLITZ SQUAD. WORLDWIDE SHIPPING.
     </footer>
 
 </body>
-  </html>
+</html>
