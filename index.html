@@ -5,96 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLITZ SQUAD | OFFICIAL STORE</title>
     <style>
-        /* BRAND DESIGN */
+        /* BRAND THEME */
         body { 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
             margin: 0; 
-            background-color: #000000; 
-            color: #ffffff; 
+            background-color: #000; 
+            color: #fff; 
+            text-align: center; 
         }
         
         header { 
-            padding: 60px 20px; 
-            text-align: center; 
+            padding: 80px 20px; 
             border-bottom: 1px solid #222; 
         }
 
         h1 { 
             font-size: 3rem; 
-            letter-spacing: 10px; 
+            letter-spacing: 12px; 
             margin: 0; 
             text-transform: uppercase; 
         }
 
         .tagline { 
             color: #666; 
-            letter-spacing: 2px; 
-            margin-top: 10px; 
+            letter-spacing: 3px; 
+            margin-top: 15px; 
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
-        /* PRODUCT GRID */
+        /* PRODUCT LAYOUT */
         .shop-container { 
-            max-width: 1100px; 
+            max-width: 1200px; 
             margin: 40px auto; 
             padding: 20px; 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
         }
 
         .product-card { 
-            background: #0a0a0a; 
-            border: 1px solid #1a1a1a; 
-            padding: 20px; 
-            text-align: center; 
-            transition: 0.3s; 
+            background: #050505; 
+            border: 1px solid #111; 
+            padding: 25px; 
+            transition: all 0.4s ease; 
         }
 
         .product-card:hover { 
-            border-color: #fff; 
+            border-color: #ffffff;
+            transform: translateY(-5px);
         }
 
         .product-card img { 
             width: 100%; 
             height: auto; 
-            margin-bottom: 20px; 
-            filter: grayscale(20%); 
+            margin-bottom: 25px; 
         }
 
         .product-card h3 { 
             text-transform: uppercase; 
-            margin: 10px 0; 
-            letter-spacing: 1px; 
+            margin: 15px 0 5px; 
+            letter-spacing: 2px; 
+            font-size: 1.1rem;
         }
 
         .price { 
             display: block; 
             color: #888; 
-            margin-bottom: 20px; 
-            font-size: 1.2rem; 
+            margin-bottom: 25px; 
+            font-size: 1.1rem; 
+            font-weight: bold;
         }
 
-        /* BUTTONS */
+        /* ORDER BUTTON */
         .btn { 
-            display: inline-block; 
+            display: block; 
             background: #fff; 
             color: #000; 
-            padding: 12px 30px; 
+            padding: 15px; 
             text-decoration: none; 
             font-weight: bold; 
             text-transform: uppercase; 
             font-size: 0.8rem; 
+            letter-spacing: 1px;
         }
 
         .btn:hover { 
-            background: #ccc; 
+            background: #cccccc; 
         }
 
         footer { 
-            padding: 50px; 
-            text-align: center; 
-            font-size: 0.8rem; 
-            color: #444; 
+            padding: 80px 20px; 
+            color: #333; 
+            font-size: 0.7rem; 
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -102,37 +107,13 @@
 
     <header>
         <h1>BLITZ SQUAD</h1>
-        <p class="tagline">PREMIUM STREETWEAR COLLECTIONS</p>
+        <p class="tagline">Engineered for the Street</p>
     </header>
 
     <div class="shop-container">
         
         <div class="product-card">
-            <img src="images/black-tee.jpg" alt="Black Blitz Tee">
-            <h3>Signature Tee (Black)</h3>
+            <img src="black-tee.jpg" alt="Black Blitz Tee">
+            <h3>Signature Tee / Black</h3>
             <span class="price">$30.00</span>
-            <a href="#" class="btn">Order via WhatsApp</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/white-tee.jpg" alt="White Blitz Tee">
-            <h3>Signature Tee (White)</h3>
-            <span class="price">$30.00</span>
-            <a href="#" class="btn">Order via WhatsApp</a>
-        </div>
-
-        <div class="product-card">
-            <img src="images/black-hoodie.jpg" alt="Black Blitz Hoodie">
-            <h3>Blitz Squad Hoodie</h3>
-            <span class="price">$55.00</span>
-            <a href="#" class="btn">Order via WhatsApp</a>
-        </div>
-
-    </div>
-
-    <footer>
-        &copy; 2025 BLITZ SQUAD. WORLDWIDE SHIPPING.
-    </footer>
-
-</body>
-</html>
+            <a
